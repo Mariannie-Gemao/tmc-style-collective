@@ -17,6 +17,9 @@ import CategoryPage from "./pages/CategoryPage";
 import AllProducts from "./pages/AllProducts";
 import SearchResults from "./pages/SearchResults";
 import Help from "./pages/Help";
+import TiktokProducts from "./pages/TiktokProducts";
+import ShopeeProducts from "./pages/ShopeeProducts";
+import SpecialProducts from "./pages/SpecialProducts";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +43,9 @@ const App = () => (
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/category/:slug" element={<CategoryPage />} />
                 <Route path="/all-products" element={<AllProducts />} />
+                <Route path="/tiktok-products" element={<TiktokProducts />} />
+                <Route path="/shopee-products" element={<ShopeeProducts />} />
+                <Route path="/special-products" element={<SpecialProducts />} />
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="*" element={<NotFound />} />

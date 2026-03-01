@@ -16,7 +16,13 @@ import { useFavorites } from "@/context/FavoritesContext";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 
-const categories = ["Electronics", "Construction Supplies", "Fashion", "Beauty", "Home & Living", "Sports"];
+const navGroups = [
+  { label: "TikTok Products", path: "/tiktok-products" },
+  { label: "Shopee Products", path: "/shopee-products" },
+  { label: "Special Products", path: "/special-products" },
+];
+
+const subCategories = ["Hardware", "Electronics", "Construction Materials", "Furniture", "Lighting", "Tools", "Industrial"];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -277,18 +283,30 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Category Navigation - removed "All Categories" */}
+      {/* Category Navigation with Dropdowns */}
       <nav className="bg-card border-b hidden lg:block">
         <div className="container">
           <ul className="flex items-center gap-1">
-            {categories.map((category) => (
-              <li key={category}>
+            {navGroups.map((group) => (
+              <li key={group.label} className="relative group">
                 <button
-                  onClick={() => navigate(`/category/${category.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`)}
+                  onClick={() => navigate(group.path)}
                   className="flex items-center gap-1 px-4 py-3 text-sm font-medium text-foreground hover:text-accent hover:bg-accent/10 transition-colors rounded-lg"
                 >
-                  {category}
+                  {group.label}
+                  <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
+                <div className="absolute left-0 top-full hidden group-hover:block bg-card border rounded-lg shadow-lg z-50 min-w-[200px]">
+                  {subCategories.map((sub) => (
+                    <button
+                      key={sub}
+                      onClick={() => navigate(`/category/${sub.toLowerCase().replace(/ /g, "-")}`)}
+                      className="block w-full text-left px-4 py-2.5 text-sm text-foreground hover:bg-secondary hover:text-accent transition-colors first:rounded-t-lg last:rounded-b-lg"
+                    >
+                      {sub}
+                    </button>
+                  ))}
+                </div>
               </li>
             ))}
           </ul>
@@ -298,22 +316,28 @@ const Header = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="lg:hidden bg-card border-b animate-slide-up">
-          <nav className="container py-4">
-            <ul className="space-y-2">
-              {categories.map((category) => (
-                <li key={category}>
-                  <button
-                    onClick={() => {
-                      navigate(`/category/${category.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`);
-                      setIsMenuOpen(false);
-                    }}
-                    className="block w-full text-left px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary rounded-lg transition-colors"
-                  >
-                    {category}
-                  </button>
-                </li>
-              ))}
-            </ul>
+          <nav className="container py-4 space-y-3">
+            {navGroups.map((group) => (
+              <div key={group.label}>
+                <button
+                  onClick={() => { navigate(group.path); setIsMenuOpen(false); }}
+                  className="block w-full text-left px-4 py-2 text-sm font-bold text-foreground hover:bg-secondary rounded-lg transition-colors"
+                >
+                  {group.label}
+                </button>
+                <div className="ml-4 space-y-1 mt-1">
+                  {subCategories.map((sub) => (
+                    <button
+                      key={sub}
+                      onClick={() => { navigate(`/category/${sub.toLowerCase().replace(/ /g, "-")}`); setIsMenuOpen(false); }}
+                      className="block w-full text-left px-4 py-1.5 text-sm text-muted-foreground hover:text-accent hover:bg-secondary rounded-lg transition-colors"
+                    >
+                      {sub}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
           </nav>
         </div>
       )}
