@@ -1,7 +1,6 @@
-import { ArrowLeft, Wrench, Cpu, HardHat, Sofa, Lightbulb, Hammer, Factory, Globe, Send } from "lucide-react";
+import { ArrowLeft, Wrench, Cpu, HardHat, Sofa, Lightbulb, Hammer, Factory, Globe, Send, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import PageLoader from "@/components/PageLoader";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -14,6 +13,7 @@ const categoryData: Record<string, {
   icon: React.ElementType;
   description: string;
   details: string[];
+  products: string[];
   countries: string[];
 }> = {
   hardware: {
@@ -27,6 +27,7 @@ const categoryData: Record<string, {
       "Cabinet hardware & drawer slides",
       "Custom OEM hardware manufacturing",
     ],
+    products: ["Stainless Steel Bolts", "Galvanized Nuts & Washers", "Door Hinges Set", "Cabinet Drawer Slides", "Padlocks & Deadbolts", "Anchors & Rivets", "Screws Assortment Pack", "Custom OEM Hardware"],
     countries: ["🇨🇳 China", "🇮🇳 India", "🇹🇼 Taiwan", "🇰🇷 South Korea", "🇩🇪 Germany", "🇺🇸 United States"],
   },
   electronics: {
@@ -40,6 +41,7 @@ const categoryData: Record<string, {
       "Batteries, chargers & power supplies",
       "Custom electronic assembly & design",
     ],
+    products: ["PCB Circuit Boards", "Microcontrollers", "Smart Home Sensors", "LED Display Panels", "Power Supply Units", "Lithium Batteries", "USB Chargers", "Custom Electronic Assembly"],
     countries: ["🇨🇳 China", "🇹🇼 Taiwan", "🇰🇷 South Korea", "🇯🇵 Japan", "🇻🇳 Vietnam", "🇲🇾 Malaysia"],
   },
   "construction-materials": {
@@ -53,6 +55,7 @@ const categoryData: Record<string, {
       "PVC pipes, fittings & plumbing supplies",
       "Sand, gravel & aggregate materials",
     ],
+    products: ["Portland Cement (bags)", "Steel Reinforcement Bars", "Roofing Sheets", "Ceramic Floor Tiles", "PVC Pipes & Fittings", "Waterproofing Membrane", "Sand & Gravel", "Structural Steel Beams"],
     countries: ["🇨🇳 China", "🇮🇳 India", "🇻🇳 Vietnam", "🇹🇭 Thailand", "🇮🇩 Indonesia", "🇹🇷 Turkey"],
   },
   furniture: {
@@ -66,6 +69,7 @@ const categoryData: Record<string, {
       "Hotel & restaurant furniture packages",
       "Shelving, storage & display units",
     ],
+    products: ["Ergonomic Office Chair", "Standing Desk", "Conference Table", "Sofa Set", "Bedroom Set", "Dining Table & Chairs", "Display Shelving Unit", "Custom OEM Furniture"],
     countries: ["🇨🇳 China", "🇻🇳 Vietnam", "🇮🇳 India", "🇮🇩 Indonesia", "🇲🇾 Malaysia", "🇹🇭 Thailand"],
   },
   lighting: {
@@ -79,6 +83,7 @@ const categoryData: Record<string, {
       "Decorative chandeliers & wall sconces",
       "Smart lighting controllers & dimmers",
     ],
+    products: ["LED Bulbs (pack)", "LED Panel Lights", "Solar Street Light", "Solar Flood Light", "High-Bay Warehouse Light", "Decorative Chandelier", "Wall Sconce", "Smart Dimmer Switch"],
     countries: ["🇨🇳 China", "🇮🇳 India", "🇹🇼 Taiwan", "🇩🇪 Germany", "🇰🇷 South Korea", "🇯🇵 Japan"],
   },
   tools: {
@@ -92,6 +97,7 @@ const categoryData: Record<string, {
       "Welding machines & accessories",
       "Complete professional tool kits",
     ],
+    products: ["Cordless Drill 21V", "Angle Grinder", "Circular Saw", "Wrench Set", "Pliers Set", "Laser Level", "Welding Machine", "Professional Tool Kit"],
     countries: ["🇨🇳 China", "🇩🇪 Germany", "🇯🇵 Japan", "🇺🇸 United States", "🇹🇼 Taiwan", "🇰🇷 South Korea"],
   },
   industrial: {
@@ -105,6 +111,7 @@ const categoryData: Record<string, {
       "Industrial chemicals & lubricants",
       "Factory automation & control systems",
     ],
+    products: ["Safety Helmets", "Industrial Gloves (box)", "Air Compressor", "Industrial Pump", "Conveyor Belt Rollers", "Industrial Lubricant", "Safety Goggles", "Control Panel System"],
     countries: ["🇨🇳 China", "🇮🇳 India", "🇩🇪 Germany", "🇺🇸 United States", "🇯🇵 Japan", "🇹🇷 Turkey"],
   },
 };
@@ -113,7 +120,7 @@ const SourcingCategory = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", product: "", quantity: 1 });
 
   const category = slug ? categoryData[slug] : null;
 
@@ -135,7 +142,7 @@ const SourcingCategory = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({ title: "Inquiry Submitted!", description: `Our ${category.name} sourcing team will contact you within 24 hours.` });
-    setForm({ name: "", email: "", phone: "", company: "", message: "" });
+    setForm({ name: "", email: "", phone: "", company: "", product: "", quantity: 1 });
   };
 
   return (
@@ -148,7 +155,7 @@ const SourcingCategory = () => {
             <Button variant="ghost" size="icon" onClick={() => navigate("/special-products")}>
               <ArrowLeft className="h-5 w-5" />
             </Button>
-            <div className="p-3 rounded-full bg-sourcing/10 text-sourcing">
+            <div className="p-3 rounded-full bg-accent/10 text-accent">
               <IconComponent className="h-7 w-7" />
             </div>
             <div>
@@ -160,14 +167,14 @@ const SourcingCategory = () => {
           {/* Description */}
           <div className="bg-card rounded-xl p-6 mb-8 border shadow-sm">
             <h2 className="font-heading text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-              <span className="h-1.5 w-6 rounded-full bg-sourcing inline-block" />
+              <span className="h-1.5 w-6 rounded-full bg-accent inline-block" />
               About {category.name} Sourcing
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">{category.description}</p>
             <ul className="space-y-2">
               {category.details.map((d, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-highlight shrink-0" />
+                  <span className="mt-1 h-2 w-2 rounded-full bg-accent shrink-0" />
                   {d}
                 </li>
               ))}
@@ -177,13 +184,13 @@ const SourcingCategory = () => {
           {/* Countries */}
           <div className="mb-8">
             <h2 className="font-heading text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-              <span className="h-1.5 w-6 rounded-full bg-highlight inline-block" />
+              <span className="h-1.5 w-6 rounded-full bg-accent inline-block" />
               Available Sourcing Countries
             </h2>
             <div className="flex flex-wrap gap-3">
               {category.countries.map((c) => (
-                <span key={c} className="flex items-center gap-1.5 bg-card border rounded-full px-4 py-2 text-sm font-medium text-foreground hover:border-sourcing transition-colors">
-                  <Globe className="h-3.5 w-3.5 text-sourcing" />
+                <span key={c} className="flex items-center gap-1.5 bg-card border rounded-full px-4 py-2 text-sm font-medium text-foreground hover:border-accent transition-colors">
+                  <Globe className="h-3.5 w-3.5 text-accent" />
                   {c}
                 </span>
               ))}
@@ -193,7 +200,7 @@ const SourcingCategory = () => {
           {/* Contact Form */}
           <div className="max-w-2xl mx-auto">
             <div className="bg-card border rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sourcing via-highlight to-sourcing" />
+              <div className="absolute top-0 left-0 right-0 h-1 gradient-accent" />
               <h2 className="font-heading text-xl font-bold text-foreground mb-2">Contact Us for {category.name}</h2>
               <p className="text-sm text-muted-foreground mb-6">Fill out the form and our sourcing team will get back to you within 24 hours.</p>
 
@@ -217,10 +224,48 @@ const SourcingCategory = () => {
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1 block">Message / Requirements *</label>
-                  <Textarea required value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder={`Describe the ${category.name.toLowerCase()} products you need, quantities, specifications...`} rows={4} />
+                  <label className="text-sm font-medium text-foreground mb-1 block">Product *</label>
+                  <select
+                    required
+                    value={form.product}
+                    onChange={(e) => setForm({ ...form, product: e.target.value })}
+                    className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <option value="">Select a product</option>
+                    {category.products.map((p) => (
+                      <option key={p} value={p}>{p}</option>
+                    ))}
+                  </select>
                 </div>
-                <Button type="submit" className="w-full gradient-sourcing text-sourcing-foreground gap-2">
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-1 block">Quantity *</label>
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setForm({ ...form, quantity: Math.max(1, form.quantity - 1) })}
+                      className="h-10 w-10 rounded-md border border-input bg-background flex items-center justify-center hover:bg-accent/10 transition-colors"
+                    >
+                      <Minus className="h-4 w-4 text-foreground" />
+                    </button>
+                    <Input
+                      type="number"
+                      required
+                      min={1}
+                      value={form.quantity}
+                      onChange={(e) => setForm({ ...form, quantity: Math.max(1, parseInt(e.target.value) || 1) })}
+                      className="w-24 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setForm({ ...form, quantity: form.quantity + 1 })}
+                      className="h-10 w-10 rounded-md border border-input bg-background flex items-center justify-center hover:bg-accent/10 transition-colors"
+                    >
+                      <Plus className="h-4 w-4 text-foreground" />
+                    </button>
+                    <span className="text-sm text-muted-foreground">units</span>
+                  </div>
+                </div>
+                <Button type="submit" className="w-full gradient-accent text-accent-foreground gap-2">
                   <Send className="h-4 w-4" />
                   Submit {category.name} Inquiry
                 </Button>
