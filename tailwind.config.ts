@@ -61,6 +61,17 @@ export default {
           bg: "hsl(var(--sale-bg))",
         },
         star: "hsl(var(--star))",
+        sourcing: {
+          DEFAULT: "hsl(var(--sourcing))",
+          foreground: "hsl(var(--sourcing-foreground))",
+          light: "hsl(var(--sourcing-light))",
+          dark: "hsl(var(--sourcing-dark))",
+        },
+        highlight: {
+          DEFAULT: "hsl(var(--highlight))",
+          foreground: "hsl(var(--highlight-foreground))",
+          light: "hsl(var(--highlight-light))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
