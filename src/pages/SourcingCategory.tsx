@@ -1,4 +1,4 @@
-import { ArrowLeft, Wrench, Cpu, HardHat, Sofa, Lightbulb, Hammer, Factory, Globe, Send, Minus, Plus } from "lucide-react";
+import { ArrowLeft, Wrench, Cpu, HardHat, Sofa, Lightbulb, Hammer, Factory, Home, Globe, Send, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import PageLoader from "@/components/PageLoader";
@@ -113,6 +113,20 @@ const categoryData: Record<string, {
     ],
     products: ["Safety Helmets", "Industrial Gloves (box)", "Air Compressor", "Industrial Pump", "Conveyor Belt Rollers", "Industrial Lubricant", "Safety Goggles", "Control Panel System"],
     countries: ["🇨🇳 China", "🇮🇳 India", "🇩🇪 Germany", "🇺🇸 United States", "🇯🇵 Japan", "🇹🇷 Turkey"],
+  },
+  "home-supplies": {
+    name: "Home Supplies",
+    icon: Home,
+    description: "Everyday home essentials including kitchen, bathroom, cleaning, and storage supplies sourced in bulk from trusted manufacturers.",
+    details: [
+      "Kitchen organizers, racks & storage",
+      "Bathroom accessories & cabinets",
+      "Cleaning supplies & equipment",
+      "Laundry baskets, hangers & accessories",
+      "Home décor & functional items",
+    ],
+    products: ["Kitchen Organizer Rack", "Dish Rack Stainless", "Bathroom Cabinet", "Laundry Basket Set", "Cleaning Mop Set", "Storage Containers", "Towel Rack", "Trash Bin Set"],
+    countries: ["🇨🇳 China", "🇮🇳 India", "🇻🇳 Vietnam", "🇹🇭 Thailand", "🇮🇩 Indonesia", "🇲🇾 Malaysia"],
   },
 };
 

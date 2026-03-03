@@ -1,4 +1,4 @@
-import { Search, ShoppingCart, User, Menu, ChevronDown, Heart } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, ChevronDown, Heart, LogOut, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useMemo } from "react";
@@ -22,7 +22,18 @@ const navGroups = [
   { label: "Special Products", path: "/special-products" },
 ];
 
-const subCategories = ["Hardware", "Electronics", "Construction Materials", "Furniture", "Lighting", "Tools", "Industrial"];
+const tiktokShopeeCategories = ["Hardware", "Electronics", "Construction Materials", "Furniture", "Lighting", "Tools", "Industrial", "Home Supplies"];
+
+const specialCategories = [
+  { name: "Hardware", slug: "hardware" },
+  { name: "Electronics", slug: "electronics" },
+  { name: "Construction Materials", slug: "construction-materials" },
+  { name: "Furniture", slug: "furniture" },
+  { name: "Lighting", slug: "lighting" },
+  { name: "Tools", slug: "tools" },
+  { name: "Industrial", slug: "industrial" },
+  { name: "Home Supplies", slug: "home-supplies" },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,7 +42,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { favorites } = useFavorites();
   const { cartCount } = useCart();
-  const { requireAuth } = useAuth();
+  const { requireAuth, isAuthenticated, isAdmin, signOut } = useAuth();
 
   const searchResults = useMemo(() => {
     if (!searchQuery.trim()) return [];
@@ -58,6 +69,11 @@ const Header = () => {
     if (requireAuth()) navigate(path);
   };
 
+  const handleLogout = async () => {
+    await signOut();
+    navigate("/");
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Top Bar */}
@@ -78,23 +94,15 @@ const Header = () => {
       {/* Main Header */}
       <div className="bg-card border-b shadow-sm">
         <div className="container flex h-16 items-center gap-4 lg:gap-8">
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
+          <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <Menu className="h-6 w-6" />
           </Button>
 
-          {/* Logo */}
           <button onClick={handleLogoClick} className="flex items-center gap-2 flex-shrink-0">
             <img src={tmcLogo} alt="TMC Shop" className="h-12 w-12 rounded-full object-cover" />
             <span className="font-heading font-bold text-xl text-primary hidden sm:inline">TMC Shop</span>
           </button>
 
-          {/* Search Bar */}
           <form onSubmit={handleSearchSubmit} className="flex-1 max-w-2xl hidden md:flex">
             <div className="relative w-full">
               <Input
@@ -106,30 +114,17 @@ const Header = () => {
                 onBlur={() => setTimeout(() => setShowResults(false), 200)}
                 className="w-full pl-4 pr-12 h-11 rounded-full border-2 border-muted focus:border-accent transition-colors"
               />
-              <Button
-                type="submit"
-                size="icon"
-                className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full h-9 w-9 bg-accent hover:bg-accent-dark"
-              >
+              <Button type="submit" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full h-9 w-9 bg-accent hover:bg-accent-dark">
                 <Search className="h-4 w-4 text-accent-foreground" />
               </Button>
 
-              {/* Search Suggestions Dropdown */}
               {showResults && searchQuery.trim() && (
                 <div className="absolute top-full mt-1 w-full bg-card border rounded-xl shadow-lg max-h-72 overflow-y-auto z-50">
                   {searchResults.length > 0 ? (
                     <>
                       {searchResults.map((product) => (
-                        <button
-                          key={product.id}
-                          className="w-full text-left px-4 py-3 hover:bg-secondary transition-colors flex items-center justify-between border-b last:border-b-0"
-                          onMouseDown={() => {
-                            const url = product.shopUrl || "https://www.tiktok.com/shop";
-                            window.open(url, "_blank", "noopener,noreferrer");
-                            setShowResults(false);
-                            setSearchQuery("");
-                          }}
-                        >
+                        <button key={product.id} className="w-full text-left px-4 py-3 hover:bg-secondary transition-colors flex items-center justify-between border-b last:border-b-0"
+                          onMouseDown={() => { const url = product.shopUrl || "https://www.tiktok.com/shop"; window.open(url, "_blank", "noopener,noreferrer"); setShowResults(false); setSearchQuery(""); }}>
                           <div>
                             <p className="text-sm font-medium text-foreground">{product.name}</p>
                             <p className="text-xs text-muted-foreground">{product.category}</p>
@@ -137,91 +132,66 @@ const Header = () => {
                           <span className="text-xs text-accent font-semibold">₱{product.price.toLocaleString()}</span>
                         </button>
                       ))}
-                      <button
-                        className="w-full text-center px-4 py-3 text-sm font-medium text-accent hover:bg-secondary transition-colors"
-                        onMouseDown={() => {
-                          navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-                          setShowResults(false);
-                        }}
-                      >
+                      <button className="w-full text-center px-4 py-3 text-sm font-medium text-accent hover:bg-secondary transition-colors"
+                        onMouseDown={() => { navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`); setShowResults(false); }}>
                         See all results for "{searchQuery}"
                       </button>
                     </>
                   ) : (
-                    <div className="px-4 py-6 text-center text-muted-foreground text-sm">
-                      No products found for "{searchQuery}"
-                    </div>
+                    <div className="px-4 py-6 text-center text-muted-foreground text-sm">No products found for "{searchQuery}"</div>
                   )}
                 </div>
               )}
             </div>
           </form>
 
-          {/* Right Actions */}
           <div className="flex items-center gap-1 sm:gap-2 ml-auto">
-            {/* Favorites */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative hover:bg-accent/10 hover:text-accent transition-colors"
-              onClick={() => handleProtectedNav("/my-favorites")}
-            >
+            <Button variant="ghost" size="icon" className="relative hover:bg-accent/10 hover:text-accent transition-colors" onClick={() => handleProtectedNav("/my-favorites")}>
               <Heart className="h-5 w-5" />
               {favorites.length > 0 && (
-                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-accent-foreground text-xs font-medium flex items-center justify-center">
-                  {favorites.length}
-                </span>
+                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-accent-foreground text-xs font-medium flex items-center justify-center">{favorites.length}</span>
               )}
             </Button>
 
-            {/* My Account Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="hover:bg-accent/10 hover:text-accent transition-colors"
-                >
+                <Button variant="ghost" size="icon" className="hover:bg-accent/10 hover:text-accent transition-colors">
                   <User className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48 bg-card border shadow-lg z-50">
                 <div className="px-2 py-1.5 text-sm font-bold text-foreground">My Account</div>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground focus:!bg-accent focus:!text-accent-foreground"
-                  onClick={() => handleProtectedNav("/my-purchase")}
-                >
-                  My Purchase
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground focus:!bg-accent focus:!text-accent-foreground"
-                  onClick={() => handleProtectedNav("/my-favorites")}
-                >
-                  My Favorites
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="cursor-pointer text-destructive hover:!bg-destructive hover:!text-destructive-foreground focus:!bg-destructive focus:!text-destructive-foreground"
-                  onClick={() => navigate("/sign-in")}
-                >
-                  Logout
-                </DropdownMenuItem>
+                {isAuthenticated ? (
+                  <>
+                    <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => navigate("/my-purchase")}>My Purchase</DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => navigate("/my-favorites")}>My Favorites</DropdownMenuItem>
+                    {isAdmin && (
+                      <>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem className="cursor-pointer text-accent hover:!bg-accent hover:!text-accent-foreground gap-2" onClick={() => navigate("/admin")}>
+                          <Shield className="h-4 w-4" /> Admin Dashboard
+                        </DropdownMenuItem>
+                      </>
+                    )}
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="cursor-pointer text-destructive hover:!bg-destructive hover:!text-destructive-foreground" onClick={handleLogout}>
+                      <LogOut className="h-4 w-4 mr-2" /> Logout
+                    </DropdownMenuItem>
+                  </>
+                ) : (
+                  <>
+                    <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => navigate("/sign-in")}>Sign In</DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => navigate("/sign-up")}>Sign Up</DropdownMenuItem>
+                  </>
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Cart Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative hover:bg-accent/10 hover:text-accent transition-colors"
-              onClick={() => handleProtectedNav("/cart")}
-            >
+            <Button variant="ghost" size="icon" className="relative hover:bg-accent/10 hover:text-accent transition-colors" onClick={() => handleProtectedNav("/cart")}>
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-accent-foreground text-xs font-medium flex items-center justify-center">
-                  {cartCount}
-                </span>
+                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-accent-foreground text-xs font-medium flex items-center justify-center">{cartCount}</span>
               )}
             </Button>
           </div>
@@ -230,52 +200,32 @@ const Header = () => {
         {/* Mobile Search */}
         <div className="md:hidden px-4 pb-3">
           <form onSubmit={handleSearchSubmit} className="relative">
-            <Input
-              type="search"
-              placeholder="Search products..."
-              value={searchQuery}
+            <Input type="search" placeholder="Search products..." value={searchQuery}
               onChange={(e) => { setSearchQuery(e.target.value); setShowResults(true); }}
               onFocus={() => setShowResults(true)}
               onBlur={() => setTimeout(() => setShowResults(false), 200)}
-              className="w-full pl-4 pr-10 h-10 rounded-full"
-            />
+              className="w-full pl-4 pr-10 h-10 rounded-full" />
             <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
               <Search className="h-4 w-4 text-muted-foreground" />
             </button>
-
             {showResults && searchQuery.trim() && (
               <div className="absolute top-full mt-1 w-full bg-card border rounded-xl shadow-lg max-h-60 overflow-y-auto z-50">
                 {searchResults.length > 0 ? (
                   <>
                     {searchResults.map((product) => (
-                      <button
-                        key={product.id}
-                        className="w-full text-left px-4 py-3 hover:bg-secondary transition-colors border-b last:border-b-0"
-                        onMouseDown={() => {
-                          const url = product.shopUrl || "https://www.tiktok.com/shop";
-                          window.open(url, "_blank", "noopener,noreferrer");
-                          setShowResults(false);
-                          setSearchQuery("");
-                        }}
-                      >
+                      <button key={product.id} className="w-full text-left px-4 py-3 hover:bg-secondary transition-colors border-b last:border-b-0"
+                        onMouseDown={() => { const url = product.shopUrl || "https://www.tiktok.com/shop"; window.open(url, "_blank", "noopener,noreferrer"); setShowResults(false); setSearchQuery(""); }}>
                         <p className="text-sm font-medium text-foreground">{product.name}</p>
                         <p className="text-xs text-accent">₱{product.price.toLocaleString()}</p>
                       </button>
                     ))}
-                    <button
-                      className="w-full text-center px-4 py-3 text-sm font-medium text-accent hover:bg-secondary"
-                      onMouseDown={() => {
-                        navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-                        setShowResults(false);
-                      }}
-                    >
+                    <button className="w-full text-center px-4 py-3 text-sm font-medium text-accent hover:bg-secondary"
+                      onMouseDown={() => { navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`); setShowResults(false); }}>
                       See all results
                     </button>
                   </>
                 ) : (
-                  <div className="px-4 py-4 text-center text-muted-foreground text-sm">
-                    No products found
-                  </div>
+                  <div className="px-4 py-4 text-center text-muted-foreground text-sm">No products found</div>
                 )}
               </div>
             )}
@@ -297,15 +247,27 @@ const Header = () => {
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </button>
                 <div className="absolute left-0 top-full hidden group-hover:block bg-card border rounded-lg shadow-lg z-50 min-w-[200px]">
-                  {subCategories.map((sub) => (
-                    <button
-                      key={sub}
-                      onClick={() => navigate(`/category/${sub.toLowerCase().replace(/ /g, "-")}`)}
-                      className="block w-full text-left px-4 py-2.5 text-sm text-foreground hover:bg-secondary hover:text-accent transition-colors first:rounded-t-lg last:rounded-b-lg"
-                    >
-                      {sub}
-                    </button>
-                  ))}
+                  {group.label === "Special Products" ? (
+                    specialCategories.map((sub) => (
+                      <button
+                        key={sub.name}
+                        onClick={() => navigate(`/special-products/${sub.slug}`)}
+                        className="block w-full text-left px-4 py-2.5 text-sm text-foreground hover:bg-secondary hover:text-accent transition-colors first:rounded-t-lg last:rounded-b-lg"
+                      >
+                        {sub.name}
+                      </button>
+                    ))
+                  ) : (
+                    tiktokShopeeCategories.map((sub) => (
+                      <button
+                        key={sub}
+                        onClick={() => navigate(`/category/${sub.toLowerCase().replace(/ /g, "-")}`)}
+                        className="block w-full text-left px-4 py-2.5 text-sm text-foreground hover:bg-secondary hover:text-accent transition-colors first:rounded-t-lg last:rounded-b-lg"
+                      >
+                        {sub}
+                      </button>
+                    ))
+                  )}
                 </div>
               </li>
             ))}
@@ -319,22 +281,26 @@ const Header = () => {
           <nav className="container py-4 space-y-3">
             {navGroups.map((group) => (
               <div key={group.label}>
-                <button
-                  onClick={() => { navigate(group.path); setIsMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-2 text-sm font-bold text-foreground hover:bg-secondary rounded-lg transition-colors"
-                >
+                <button onClick={() => { navigate(group.path); setIsMenuOpen(false); }}
+                  className="block w-full text-left px-4 py-2 text-sm font-bold text-foreground hover:bg-secondary rounded-lg transition-colors">
                   {group.label}
                 </button>
                 <div className="ml-4 space-y-1 mt-1">
-                  {subCategories.map((sub) => (
-                    <button
-                      key={sub}
-                      onClick={() => { navigate(`/category/${sub.toLowerCase().replace(/ /g, "-")}`); setIsMenuOpen(false); }}
-                      className="block w-full text-left px-4 py-1.5 text-sm text-muted-foreground hover:text-accent hover:bg-secondary rounded-lg transition-colors"
-                    >
-                      {sub}
-                    </button>
-                  ))}
+                  {group.label === "Special Products" ? (
+                    specialCategories.map((sub) => (
+                      <button key={sub.name} onClick={() => { navigate(`/special-products/${sub.slug}`); setIsMenuOpen(false); }}
+                        className="block w-full text-left px-4 py-1.5 text-sm text-muted-foreground hover:text-accent hover:bg-secondary rounded-lg transition-colors">
+                        {sub.name}
+                      </button>
+                    ))
+                  ) : (
+                    tiktokShopeeCategories.map((sub) => (
+                      <button key={sub} onClick={() => { navigate(`/category/${sub.toLowerCase().replace(/ /g, "-")}`); setIsMenuOpen(false); }}
+                        className="block w-full text-left px-4 py-1.5 text-sm text-muted-foreground hover:text-accent hover:bg-secondary rounded-lg transition-colors">
+                        {sub}
+                      </button>
+                    ))
+                  )}
                 </div>
               </div>
             ))}
