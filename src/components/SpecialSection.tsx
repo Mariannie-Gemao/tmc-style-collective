@@ -1,4 +1,4 @@
-import { Wrench, Cpu, HardHat, Sofa, Lightbulb, Hammer, Factory, ChevronRight, ExternalLink } from "lucide-react";
+import { Wrench, Cpu, HardHat, Sofa, Lightbulb, Hammer, Factory, Home, ChevronRight, Globe, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,7 @@ const categories = [
   { name: "Lighting", slug: "lighting", icon: Lightbulb, description: "LED, solar & smart lighting" },
   { name: "Tools", slug: "tools", icon: Hammer, description: "Power & hand tools" },
   { name: "Industrial", slug: "industrial", icon: Factory, description: "Machinery & safety equipment" },
+  { name: "Home Supplies", slug: "home-supplies", icon: Home, description: "Everyday home essentials" },
 ];
 
 const SpecialSection = () => {
@@ -20,8 +21,8 @@ const SpecialSection = () => {
       <div className="container">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className="gradient-accent p-2 rounded-lg">
-              <span className="text-accent-foreground font-bold text-lg">⭐</span>
+            <div className="gradient-accent p-2.5 rounded-lg">
+              <Globe className="h-6 w-6 text-accent-foreground" />
             </div>
             <div>
               <h2 className="font-heading text-2xl font-bold text-foreground">Special Products</h2>
@@ -49,7 +50,7 @@ const SpecialSection = () => {
                 <div className={`p-5 rounded-full ${i % 2 === 0 ? "bg-accent/10 text-accent" : "bg-primary/10 text-primary"} group-hover:scale-110 transition-transform duration-300`}>
                   <cat.icon className="h-12 w-12" />
                 </div>
-                <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-accent/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform">
+                <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-primary/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform">
                   <Button className="w-full bg-accent hover:bg-accent-dark text-accent-foreground gap-2 rounded-full">
                     <ExternalLink className="h-4 w-4" />
                     Shop Now

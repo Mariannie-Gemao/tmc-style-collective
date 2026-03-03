@@ -1,4 +1,4 @@
-import { Cpu, Wrench, HardHat, Sofa, Lightbulb, Hammer, Factory } from "lucide-react";
+import { Cpu, Wrench, HardHat, Sofa, Lightbulb, Hammer, Factory, Home } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const categories = [
@@ -9,6 +9,7 @@ const categories = [
   { name: "Lighting", icon: Lightbulb, color: "bg-amber-100 text-amber-600", slug: "lighting" },
   { name: "Tools", icon: Hammer, color: "bg-orange-100 text-orange-600", slug: "tools" },
   { name: "Industrial", icon: Factory, color: "bg-purple-100 text-purple-600", slug: "industrial" },
+  { name: "Home Supplies", icon: Home, color: "bg-rose-100 text-rose-600", slug: "home-supplies" },
 ];
 
 const CategorySection = () => {

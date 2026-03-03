@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { shopeeProducts } from "@/data/products";
 
@@ -12,8 +12,8 @@ const ShopeeSection = () => {
       <div className="container">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className="gradient-primary p-2 rounded-lg">
-              <span className="text-primary-foreground font-bold text-lg">🛒</span>
+            <div className="gradient-primary p-2.5 rounded-lg">
+              <ShoppingCart className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
               <h2 className="font-heading text-2xl font-bold text-foreground">Shopee Products</h2>

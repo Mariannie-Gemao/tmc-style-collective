@@ -1,4 +1,4 @@
-import { ArrowLeft, Wrench, Cpu, HardHat, Sofa, Lightbulb, Hammer, Factory, ChevronRight, ExternalLink } from "lucide-react";
+import { ArrowLeft, Wrench, Cpu, HardHat, Sofa, Lightbulb, Hammer, Factory, Home, ChevronRight, Globe, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PageLoader from "@/components/PageLoader";
 import Header from "@/components/Header";
@@ -13,6 +13,7 @@ const sourcingCategories = [
   { name: "Lighting", slug: "lighting", icon: Lightbulb, description: "LED lights, industrial lighting, solar-powered systems, decorative fixtures, and smart lighting solutions." },
   { name: "Tools", slug: "tools", icon: Hammer, description: "Power tools, hand tools, professional-grade equipment, and complete toolkits for every trade." },
   { name: "Industrial", slug: "industrial", icon: Factory, description: "Heavy machinery parts, safety equipment, industrial chemicals, and factory supplies at scale." },
+  { name: "Home Supplies", slug: "home-supplies", icon: Home, description: "Everyday home essentials including kitchen, bathroom, cleaning, and storage supplies in bulk." },
 ];
 
 const SpecialProducts = () => {
@@ -53,7 +54,7 @@ const SpecialProducts = () => {
                   <div className={`p-5 rounded-full ${i % 2 === 0 ? "bg-accent/10 text-accent" : "bg-primary/10 text-primary"} group-hover:scale-110 transition-transform duration-300`}>
                     <cat.icon className="h-12 w-12" />
                   </div>
-                  <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-accent/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform">
+                  <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-primary/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform">
                     <Button className="w-full bg-accent hover:bg-accent-dark text-accent-foreground gap-2 rounded-full">
                       <ExternalLink className="h-4 w-4" />
                       Shop Now

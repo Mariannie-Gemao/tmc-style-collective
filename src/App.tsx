@@ -21,6 +21,7 @@ import TiktokProducts from "./pages/TiktokProducts";
 import ShopeeProducts from "./pages/ShopeeProducts";
 import SpecialProducts from "./pages/SpecialProducts";
 import SourcingCategory from "./pages/SourcingCategory";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +51,7 @@ const App = () => (
                 <Route path="/special-products/:slug" element={<SourcingCategory />} />
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="/help" element={<Help />} />
+                <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
