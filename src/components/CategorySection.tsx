@@ -22,17 +22,17 @@ const CategorySection = () => {
           Shop by Category
         </h2>
 
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-4">
+        <div className="grid grid-cols-4 sm:grid-cols-8 gap-2 md:gap-3">
           {categories.map((category) => (
             <button
               key={category.name}
               onClick={() => navigate(`/category/${category.slug}`)}
-              className="group flex flex-col items-center gap-3 p-4 rounded-xl bg-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
+              className="group flex flex-col items-center gap-2 p-3 rounded-xl bg-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
             >
               <div className={`p-3 rounded-full ${category.color} group-hover:scale-110 transition-transform`}>
                 <category.icon className="h-6 w-6" />
               </div>
-              <span className="text-sm font-medium text-foreground text-center line-clamp-2">
+              <span className="text-xs font-medium text-foreground text-center whitespace-nowrap">
                 {category.name}
               </span>
             </button>

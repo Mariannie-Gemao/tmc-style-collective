@@ -1,13 +1,14 @@
-import { ArrowLeft, MessageCircle, Phone, Mail, HelpCircle, Package, CreditCard, Truck, RotateCcw, ShieldCheck } from "lucide-react";
+import { ArrowLeft, MessageCircle, Phone, Mail, HelpCircle, Package, CreditCard, Truck, RotateCcw, ShieldCheck, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import PageLoader from "@/components/PageLoader";
 
 const faqs = [
-  { q: "How do I place an order?", a: "Browse products, add items to your cart, and proceed to checkout. You'll be redirected to the respective shop (TikTok Shop, Shopee, or Lazada) to complete your purchase." },
+  { q: "How do I place an order?", a: "Browse products, add items to your cart, and proceed to checkout. For TikTok Shop and Shopee products, you'll be redirected to the respective platform. For Special Products (global sourcing), fill out the inquiry form and our team will contact you." },
   { q: "How can I track my order?", a: "Go to My Account → My Purchase to view all your orders and their current status. You can also click 'Track Order' in the top navigation bar." },
-  { q: "What payment methods are accepted?", a: "Payment methods depend on the platform (TikTok Shop, Shopee, Lazada). Common options include COD, GCash, bank transfer, and credit/debit cards." },
-  { q: "How do I return or refund an item?", a: "Navigate to My Purchase, find the order, and check its status. Returns and refunds are processed through the original shopping platform." },
+  { q: "What payment methods are accepted?", a: "For TikTok Shop and Shopee products, common options include COD, GCash, bank transfer, and credit/debit cards. For sourcing orders, payment terms are arranged directly with our sourcing team." },
+  { q: "How does global sourcing work?", a: "Navigate to Special Products, choose a category, and fill out the sourcing inquiry form. Our team will source products from verified manufacturers worldwide, handle quality inspection, and manage logistics for you." },
+  { q: "How do I return or refund an item?", a: "Navigate to My Purchase, find the order, and check its status. Returns and refunds are processed through the original shopping platform (TikTok Shop or Shopee)." },
   { q: "Is my personal information secure?", a: "Yes, we take data security seriously. Your information is encrypted and never shared with third parties without your consent." },
   { q: "How do I add items to my favorites?", a: "Click the heart icon on any product card to save it to your favorites. Access your saved items from the heart icon in the navigation bar." },
 ];
@@ -22,6 +23,7 @@ const helpCategories = [
   { icon: Package, title: "Orders & Shipping", desc: "Track, manage, and resolve order issues" },
   { icon: CreditCard, title: "Payments & Billing", desc: "Payment methods, invoices, and transaction help" },
   { icon: Truck, title: "Delivery Information", desc: "Shipping times, fees, and delivery areas" },
+  { icon: Globe, title: "Global Sourcing", desc: "Bulk orders, sourcing inquiries, and supplier info" },
   { icon: RotateCcw, title: "Returns & Refunds", desc: "Return policies and refund processing" },
   { icon: ShieldCheck, title: "Account & Security", desc: "Account settings, password, and privacy" },
   { icon: HelpCircle, title: "General Inquiries", desc: "Other questions and feedback" },
