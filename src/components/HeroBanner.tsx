@@ -87,7 +87,7 @@ const HeroBanner = () => {
             <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
               <Button 
                 size="lg" 
-                className="bg-accent hover:bg-accent-dark text-accent-foreground font-semibold px-6 md:px-8 rounded-full group"
+                className="bg-accent hover:bg-accent-dark text-accent-foreground font-semibold px-6 md:px-8 rounded-full group animate-pulse-glow"
                 onClick={() => scrollToSection("featured-products")}
               >
                 Shop Now
