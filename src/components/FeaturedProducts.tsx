@@ -12,7 +12,7 @@ const FeaturedProducts = () => {
       <div className="container">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className="gradient-primary p-2 rounded-lg">
+            <div className="gradient-primary p-2 rounded-lg icon-bounce">
               <TrendingUp className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
@@ -22,7 +22,7 @@ const FeaturedProducts = () => {
           </div>
           <Button
             variant="outline"
-            className="hidden sm:flex gap-2 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            className="hidden sm:flex gap-2 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground btn-glow-primary btn-shine"
             onClick={() => navigate("/all-products")}
           >
             View All
@@ -39,7 +39,7 @@ const FeaturedProducts = () => {
         <div className="mt-6 text-center sm:hidden">
           <Button
             variant="outline"
-            className="gap-2 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            className="gap-2 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground btn-shine"
             onClick={() => navigate("/all-products")}
           >
             View All Products

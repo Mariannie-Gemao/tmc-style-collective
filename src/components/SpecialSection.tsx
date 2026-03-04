@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const categories = [
   { name: "Hardware", slug: "hardware", icon: Wrench, description: "Bolts, nuts, hinges & fasteners" },
   { name: "Electronics", slug: "electronics", icon: Cpu, description: "Components & smart devices" },
-  { name: "Construction Materials", slug: "construction-materials", icon: HardHat, description: "Cement, steel & roofing" },
+  { name: "Construction", slug: "construction-materials", icon: HardHat, description: "Cement, steel & roofing" },
   { name: "Furniture", slug: "furniture", icon: Sofa, description: "Office & home furniture" },
   { name: "Lighting", slug: "lighting", icon: Lightbulb, description: "LED, solar & smart lighting" },
   { name: "Tools", slug: "tools", icon: Hammer, description: "Power & hand tools" },
@@ -21,7 +21,7 @@ const SpecialSection = () => {
       <div className="container">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className="gradient-accent p-2.5 rounded-lg">
+            <div className="gradient-accent p-2.5 rounded-lg icon-bounce">
               <Globe className="h-6 w-6 text-accent-foreground" />
             </div>
             <div>
@@ -31,7 +31,7 @@ const SpecialSection = () => {
           </div>
           <Button
             variant="outline"
-            className="hidden sm:flex gap-2 rounded-full border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+            className="hidden sm:flex gap-2 rounded-full border-accent text-accent hover:bg-accent hover:text-accent-foreground btn-shine btn-glow-accent"
             onClick={() => navigate("/special-products")}
           >
             View All
@@ -51,9 +51,9 @@ const SpecialSection = () => {
                   <cat.icon className="h-12 w-12" />
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-primary/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform">
-                  <Button className="w-full bg-accent hover:bg-accent-dark text-accent-foreground gap-2 rounded-full">
+                  <Button className="w-full bg-accent hover:bg-accent-dark text-accent-foreground gap-2 rounded-full btn-shine btn-glow-accent">
                     <ExternalLink className="h-4 w-4" />
-                    Shop Now
+                    Inquire Now
                   </Button>
                 </div>
               </div>
@@ -69,7 +69,7 @@ const SpecialSection = () => {
           ))}
         </div>
         <div className="mt-6 text-center sm:hidden">
-          <Button variant="outline" className="gap-2 rounded-full border-accent text-accent hover:bg-accent hover:text-accent-foreground" onClick={() => navigate("/special-products")}>
+          <Button variant="outline" className="gap-2 rounded-full border-accent text-accent hover:bg-accent hover:text-accent-foreground btn-shine" onClick={() => navigate("/special-products")}>
             View All Special Products <ChevronRight className="h-4 w-4" />
           </Button>
         </div>

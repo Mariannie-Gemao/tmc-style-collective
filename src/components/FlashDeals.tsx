@@ -27,7 +27,7 @@ const FlashDeals = () => {
       <div className="container">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">
-            <div className="gradient-accent p-2 rounded-lg">
+            <div className="gradient-accent p-2 rounded-lg icon-bounce">
               <Flame className="h-6 w-6 text-accent-foreground" />
             </div>
             <div>
@@ -35,7 +35,7 @@ const FlashDeals = () => {
               <p className="text-sm text-muted-foreground">Limited time offers!</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full">
+          <div className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full animate-pulse-glow">
             <Clock className="h-4 w-4" />
             <span className="text-sm font-medium">Ends in:</span>
             <div className="flex items-center gap-1 font-mono font-bold">

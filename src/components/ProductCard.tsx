@@ -44,14 +44,14 @@ const ProductCard = ({ product, isFlashDeal = false }: ProductCardProps) => {
         </div>
         
         {product.discount && (
-          <Badge className="absolute top-2 left-2 bg-accent text-accent-foreground font-bold">
+          <Badge className="absolute top-2 left-2 bg-accent text-accent-foreground font-bold animate-pulse-slow">
             -{product.discount}%
           </Badge>
         )}
         
         <button
           onClick={(e) => { e.stopPropagation(); toggleFavorite(product); }}
-          className="absolute top-2 right-2 p-2 rounded-full bg-card/80 backdrop-blur-sm hover:bg-card transition-colors"
+          className="absolute top-2 right-2 p-2 rounded-full bg-card/80 backdrop-blur-sm hover:bg-card hover:scale-110 transition-all duration-200"
         >
           <Heart 
             className={`h-4 w-4 transition-colors ${
@@ -61,7 +61,7 @@ const ProductCard = ({ product, isFlashDeal = false }: ProductCardProps) => {
         </button>
         
         <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-primary/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform">
-          <Button className="w-full bg-accent hover:bg-accent-dark text-accent-foreground gap-2 rounded-full">
+          <Button className="w-full bg-accent hover:bg-accent-dark text-accent-foreground gap-2 rounded-full btn-shine btn-glow-accent">
             <ExternalLink className="h-4 w-4" />
             Shop Now
           </Button>

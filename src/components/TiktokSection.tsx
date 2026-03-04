@@ -12,7 +12,7 @@ const TiktokSection = () => {
       <div className="container">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className="gradient-accent p-2.5 rounded-lg">
+            <div className="gradient-accent p-2.5 rounded-lg icon-bounce">
               <ShoppingCart className="h-6 w-6 text-accent-foreground" />
             </div>
             <div>
@@ -22,7 +22,7 @@ const TiktokSection = () => {
           </div>
           <Button
             variant="outline"
-            className="hidden sm:flex gap-2 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            className="hidden sm:flex gap-2 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground btn-shine btn-glow-primary"
             onClick={() => navigate("/tiktok-products")}
           >
             View All
@@ -35,7 +35,7 @@ const TiktokSection = () => {
           ))}
         </div>
         <div className="mt-6 text-center sm:hidden">
-          <Button variant="outline" className="gap-2 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => navigate("/tiktok-products")}>
+          <Button variant="outline" className="gap-2 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground btn-shine" onClick={() => navigate("/tiktok-products")}>
             View All TikTok Products <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
