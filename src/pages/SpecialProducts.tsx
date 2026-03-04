@@ -56,8 +56,8 @@ const SpecialProducts = () => {
                   </div>
                   <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-primary/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform">
                     <Button className="w-full bg-accent hover:bg-accent-dark text-accent-foreground gap-2 rounded-full">
-                      <ExternalLink className="h-4 w-4" />
-                      Shop Now
+                      <Globe className="h-4 w-4" />
+                      Inquire Now
                     </Button>
                   </div>
                 </div>

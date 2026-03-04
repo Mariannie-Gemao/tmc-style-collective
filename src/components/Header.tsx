@@ -100,7 +100,7 @@ const Header = () => {
 
           <button onClick={handleLogoClick} className="flex items-center gap-2 flex-shrink-0">
             <img src={tmcLogo} alt="TMC Shop" className="h-12 w-12 rounded-full object-cover" />
-            <span className="font-heading font-bold text-xl text-primary hidden sm:inline">TMC Shop</span>
+            <span className="font-heading font-bold text-xl text-primary">TMC Shop</span>
           </button>
 
           <form onSubmit={handleSearchSubmit} className="flex-1 max-w-2xl hidden md:flex">
@@ -162,27 +162,22 @@ const Header = () => {
               <DropdownMenuContent align="end" className="w-48 bg-card border shadow-lg z-50">
                 <div className="px-2 py-1.5 text-sm font-bold text-foreground">My Account</div>
                 <DropdownMenuSeparator />
-                {isAuthenticated ? (
+                <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => handleProtectedNav("/my-purchase")}>My Purchase</DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => handleProtectedNav("/my-favorites")}>My Favorites</DropdownMenuItem>
+                {isAdmin && (
                   <>
-                    <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => navigate("/my-purchase")}>My Purchase</DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => navigate("/my-favorites")}>My Favorites</DropdownMenuItem>
-                    {isAdmin && (
-                      <>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem className="cursor-pointer text-accent hover:!bg-accent hover:!text-accent-foreground gap-2" onClick={() => navigate("/admin")}>
-                          <Shield className="h-4 w-4" /> Admin Dashboard
-                        </DropdownMenuItem>
-                      </>
-                    )}
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="cursor-pointer text-accent hover:!bg-accent hover:!text-accent-foreground gap-2" onClick={() => navigate("/admin")}>
+                      <Shield className="h-4 w-4" /> Admin Dashboard
+                    </DropdownMenuItem>
+                  </>
+                )}
+                {isAuthenticated && (
+                  <>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem className="cursor-pointer text-destructive hover:!bg-destructive hover:!text-destructive-foreground" onClick={handleLogout}>
                       <LogOut className="h-4 w-4 mr-2" /> Logout
                     </DropdownMenuItem>
-                  </>
-                ) : (
-                  <>
-                    <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => navigate("/sign-in")}>Sign In</DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => navigate("/sign-up")}>Sign Up</DropdownMenuItem>
                   </>
                 )}
               </DropdownMenuContent>

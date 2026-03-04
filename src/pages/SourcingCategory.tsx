@@ -166,7 +166,7 @@ const SourcingCategory = () => {
         <div className="container py-8">
           {/* Header */}
           <div className="flex items-center gap-3 mb-8">
-            <Button variant="ghost" size="icon" onClick={() => navigate("/special-products")}>
+            <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div className="p-3 rounded-full bg-accent/10 text-accent">
@@ -233,8 +233,18 @@ const SourcingCategory = () => {
                     <Input required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+63 9XX XXX XXXX" />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1 block">Company Name</label>
-                    <Input value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Your Company" />
+                    <label className="text-sm font-medium text-foreground mb-1 block">Preferred Country *</label>
+                    <select
+                      required
+                      value={form.company}
+                      onChange={(e) => setForm({ ...form, company: e.target.value })}
+                      className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <option value="">Select a country</option>
+                      {category.countries.map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
                   </div>
                 </div>
                 <div>
