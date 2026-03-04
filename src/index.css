@@ -175,6 +175,47 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(0 0% 100% / 0.25),
+      transparent
+    );
+    transform: skewX(-20deg);
+    animation: shine 3s ease-in-out infinite;
+  }
+
+  .btn-glow-primary {
+    box-shadow: 0 0 12px 2px hsl(220 80% 15% / 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+  .btn-glow-primary:hover {
+    box-shadow: 0 0 24px 6px hsl(220 80% 15% / 0.45);
+  }
+
+  .btn-glow-accent {
+    box-shadow: 0 0 12px 2px hsl(25 95% 53% / 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+  .btn-glow-accent:hover {
+    box-shadow: 0 0 24px 6px hsl(25 95% 53% / 0.45);
+  }
+
+  .icon-bounce {
+    animation: iconBounce 2s ease-in-out infinite;
+  }
 }
 
 @layer utilities {
@@ -216,5 +257,16 @@
 
   .animate-pulse-glow {
     animation: pulseGlow 2.5s ease-in-out infinite;
+  }
+
+  @keyframes shine {
+    0% { left: -60%; }
+    50%, 100% { left: 120%; }
+  }
+
+  @keyframes iconBounce {
+    0%, 100% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-4px) scale(1.05); }
+    50% { transform: translateY(0) scale(1); }
   }
 }
