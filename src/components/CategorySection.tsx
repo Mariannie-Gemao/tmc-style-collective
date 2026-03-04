@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const categories = [
   { name: "Hardware", icon: Wrench, color: "bg-blue-100 text-blue-600", slug: "hardware" },
   { name: "Electronics", icon: Cpu, color: "bg-cyan-100 text-cyan-600", slug: "electronics" },
-  { name: "Construction Materials", icon: HardHat, color: "bg-yellow-100 text-yellow-600", slug: "construction-materials" },
+  { name: "Construction", icon: HardHat, color: "bg-yellow-100 text-yellow-600", slug: "construction-materials" },
   { name: "Furniture", icon: Sofa, color: "bg-green-100 text-green-600", slug: "furniture" },
   { name: "Lighting", icon: Lightbulb, color: "bg-amber-100 text-amber-600", slug: "lighting" },
   { name: "Tools", icon: Hammer, color: "bg-orange-100 text-orange-600", slug: "tools" },
@@ -32,7 +32,7 @@ const CategorySection = () => {
               <div className={`p-3 rounded-full ${category.color} group-hover:scale-110 transition-transform`}>
                 <category.icon className="h-6 w-6" />
               </div>
-              <span className="text-xs font-medium text-foreground text-center whitespace-nowrap">
+              <span className="text-xs font-medium text-foreground text-center leading-tight">
                 {category.name}
               </span>
             </button>

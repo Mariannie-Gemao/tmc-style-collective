@@ -1,36 +1,40 @@
-import { Truck, Shield, RefreshCw, Headphones } from "lucide-react";
+import { Globe, Package, BadgeCheck, Handshake } from "lucide-react";
 
 const badges = [
   {
-    icon: Truck,
-    title: "Free Shipping",
-    description: "On orders over ₱999",
+    icon: Globe,
+    title: "Global Sourcing",
+    description: "Direct from manufacturers",
   },
   {
-    icon: Shield,
-    title: "Secure Payment",
-    description: "100% protected",
+    icon: Package,
+    title: "Bulk Orders",
+    description: "Wholesale pricing available",
   },
   {
-    icon: RefreshCw,
-    title: "Easy Returns",
-    description: "7-day return policy",
+    icon: BadgeCheck,
+    title: "Quality Assured",
+    description: "Verified suppliers only",
   },
   {
-    icon: Headphones,
-    title: "24/7 Support",
-    description: "Dedicated support",
+    icon: Handshake,
+    title: "Trusted Partner",
+    description: "Reliable trade solutions",
   },
 ];
 
 const TrustBadges = () => {
   return (
-    <section className="py-10 bg-card border-y">
+    <section className="py-10 bg-card border-y overflow-hidden">
       <div className="container">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {badges.map((badge) => (
-            <div key={badge.title} className="flex items-center gap-4">
-              <div className="gradient-primary p-3 rounded-xl">
+          {badges.map((badge, i) => (
+            <div
+              key={badge.title}
+              className="flex items-center gap-4 group animate-fade-in"
+              style={{ animationDelay: `${i * 150}ms`, animationFillMode: "both" }}
+            >
+              <div className="gradient-primary p-3 rounded-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                 <badge.icon className="h-6 w-6 text-primary-foreground" />
               </div>
               <div>
