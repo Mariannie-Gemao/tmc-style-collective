@@ -30,8 +30,8 @@ const SignIn = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col lg:flex-row">
-      {/* Left Panel - Branding */}
-      <div className="relative lg:flex-1 bg-gradient-to-br from-orange-50 via-orange-100/50 to-orange-50 p-8 lg:p-16 flex flex-col justify-center overflow-hidden">
+      {/* Left Panel - Branding (hidden on mobile/tablet) */}
+      <div className="relative lg:flex-1 bg-gradient-to-br from-orange-50 via-orange-100/50 to-orange-50 p-8 lg:p-16 hidden lg:flex flex-col justify-center overflow-hidden">
         {/* Decorative blobs */}
         <div className="absolute top-10 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute bottom-20 left-10 w-48 h-48 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
@@ -92,7 +92,7 @@ const SignIn = () => {
       </div>
 
       {/* Right Panel - Form */}
-      <div className="lg:w-[480px] xl:w-[520px] flex items-center justify-center p-6 sm:p-10 bg-card border-l">
+      <div className="flex-1 lg:w-[480px] xl:w-[520px] lg:flex-none flex items-center justify-center p-6 sm:p-10 bg-card lg:border-l min-h-screen lg:min-h-0">
         <div className="w-full max-w-sm">
           <div className="flex flex-col items-center lg:items-start mb-8">
             <div className="flex items-center gap-3 mb-4">
