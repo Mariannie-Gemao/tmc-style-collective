@@ -272,7 +272,7 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-card border-b animate-slide-up">
+        <div className="lg:hidden bg-card border-b animate-slide-up max-h-[70vh] overflow-y-auto">
           <nav className="container py-4 space-y-3">
             {navGroups.map((group) => (
               <div key={group.label}>
