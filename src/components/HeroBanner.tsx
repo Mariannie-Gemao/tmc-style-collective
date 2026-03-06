@@ -80,26 +80,26 @@ const HeroBanner = () => {
             </h1>
             
             <p className="text-base md:text-lg text-primary-foreground/80 max-w-md mx-auto lg:mx-0">
-              Shop the most viral products from TikTok Shop, Lazada, Shopee & more. 
+              Shop the most viral products from TikTok Shop, Shopee & our exclusive sourcing catalog. 
               Quality items at unbeatable prices.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
               <Button 
                 size="lg" 
-                className="bg-accent hover:bg-accent-dark text-accent-foreground font-semibold px-6 md:px-8 rounded-full group animate-pulse-glow"
+                className="bg-accent hover:bg-accent-dark text-accent-foreground font-semibold px-6 md:px-8 rounded-full group animate-pulse-glow btn-shine"
                 onClick={() => scrollToSection("featured-products")}
               >
-                Shop Now
+                Browse Products
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-primary-foreground/30 text-primary-foreground bg-transparent hover:bg-primary-foreground/10 rounded-full"
+                className="border-2 border-primary-foreground/30 text-primary-foreground bg-transparent hover:bg-primary-foreground/10 rounded-full btn-shine"
                 onClick={() => scrollToSection("flash-deals")}
               >
-                View Deals
+                Today's Deals
               </Button>
             </div>
           </div>

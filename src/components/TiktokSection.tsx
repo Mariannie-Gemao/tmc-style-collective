@@ -1,11 +1,12 @@
 import ProductCard from "./ProductCard";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, ShoppingCart } from "lucide-react";
+import { ChevronRight, ShoppingCart, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { tiktokProducts } from "@/data/products";
+import { useRealtimeProducts } from "@/hooks/useRealtimeProducts";
 
 const TiktokSection = () => {
   const navigate = useNavigate();
+  const { products, loading } = useRealtimeProducts("tiktok");
 
   return (
     <section className="py-10 bg-background">
@@ -29,11 +30,15 @@ const TiktokSection = () => {
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {tiktokProducts.slice(0, 4).map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {products.slice(0, 4).map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
         <div className="mt-6 text-center sm:hidden">
           <Button variant="outline" className="gap-2 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground btn-shine" onClick={() => navigate("/tiktok-products")}>
             View All TikTok Products <ChevronRight className="h-4 w-4" />

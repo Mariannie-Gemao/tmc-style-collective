@@ -17,7 +17,7 @@ const tabs = [
 const orders = [
   { id: "ORD-001", product: "Wireless Earbuds", shop: "TikTok Shop", status: "to-pay", price: 899, date: "2024-12-01", image: "https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=200&h=200&fit=crop" },
   { id: "ORD-002", product: "Smart Watch", shop: "Shopee", status: "to-ship", price: 1299, date: "2024-12-03", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop" },
-  { id: "ORD-003", product: "LED Ring Light", shop: "Lazada", status: "to-receive", price: 499, date: "2024-12-05", image: "https://images.unsplash.com/photo-1586953208270-767889fa9b55?w=200&h=200&fit=crop" },
+  { id: "ORD-003", product: "LED Ring Light", shop: "TikTok Shop", status: "to-receive", price: 499, date: "2024-12-05", image: "https://images.unsplash.com/photo-1586953208270-767889fa9b55?w=200&h=200&fit=crop" },
   { id: "ORD-004", product: "Bluetooth Speaker", shop: "TikTok Shop", status: "completed", price: 649, date: "2024-11-20", image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200&h=200&fit=crop" },
   { id: "ORD-005", product: "USB-C Charger", shop: "Shopee", status: "completed", price: 349, date: "2024-11-15", image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=200&h=200&fit=crop" },
 ];
@@ -40,20 +40,22 @@ const MyPurchase = () => {
           </div>
 
           {/* Tabs */}
-          <div className="flex flex-wrap gap-1 border-b mb-6">
-            {tabs.map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={`px-4 py-3 text-sm font-medium transition-colors flex items-center gap-1.5 border-b-2 -mb-px ${
-                  activeTab === tab.key
-                    ? "border-accent text-accent"
-                    : "border-transparent text-muted-foreground hover:text-foreground hover:border-muted"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          <div className="overflow-x-auto -mx-4 px-4 mb-6">
+            <div className="flex gap-1 border-b min-w-max">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`px-4 py-3 text-sm font-medium transition-colors flex items-center gap-1.5 border-b-2 -mb-px whitespace-nowrap ${
+                    activeTab === tab.key
+                      ? "border-accent text-accent"
+                      : "border-transparent text-muted-foreground hover:text-foreground hover:border-muted"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Orders */}
