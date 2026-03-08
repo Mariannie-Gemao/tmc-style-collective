@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Mail, Lock, ShieldCheck, BarChart3, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import tmcLogo from "@/assets/tmc-logo.png";
+
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -96,11 +96,11 @@ const SignIn = () => {
       {/* Right Panel - Glassmorphism Form */}
       <div className="flex-1 lg:w-[480px] xl:w-[520px] lg:flex-none flex items-center justify-center p-6 sm:p-10 min-h-screen lg:min-h-0 z-10">
         <div className="w-full max-w-sm">
-          <div className="backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-8 sm:p-10">
+          <div className="relative backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-8 sm:p-10 overflow-hidden">
+            {/* Light sweep effect */}
+            <div className="absolute -top-24 -left-24 w-48 h-48 bg-white/20 rounded-full blur-3xl pointer-events-none animate-pulse-slow" />
+            <div className="absolute -bottom-16 -right-16 w-40 h-40 bg-accent/15 rounded-full blur-3xl pointer-events-none animate-pulse-slow" style={{ animationDelay: "3s" }} />
             <div className="flex flex-col items-center mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <img src={tmcLogo} alt="TMC Shop" className="h-14 w-14 rounded-full object-cover ring-2 ring-accent/50 shadow-lg" />
-              </div>
               <h2 className="font-heading text-2xl font-bold text-white">Welcome Back</h2>
               <p className="text-sm text-white/60 mt-1">Sign in to your account</p>
             </div>
