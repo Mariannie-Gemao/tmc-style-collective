@@ -41,7 +41,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCart((prev) => prev.filter((i) => i.id !== id));
   };
 
-  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartCount = cart.length;
 
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, cartCount }}>
