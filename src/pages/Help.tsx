@@ -1,4 +1,4 @@
-import { ArrowLeft, MessageCircle, Phone, Mail, HelpCircle, Package, CreditCard, Truck, RotateCcw, ShieldCheck, Globe } from "lucide-react";
+import { ArrowLeft, MessageCircle, Phone, Mail, HelpCircle, Package, CreditCard, Truck, ShieldCheck, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import PageLoader from "@/components/PageLoader";
