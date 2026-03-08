@@ -14,9 +14,9 @@ const faqs = [
 ];
 
 const supportOptions = [
-  { icon: MessageCircle, title: "Viber Chat", desc: "Chat with our support team via Viber", action: "Open Viber", color: "bg-purple-100 text-purple-600" },
-  { icon: Phone, title: "Call Us", desc: "+63 912 345 6789 (Mon-Sat, 9AM-6PM)", action: "Call Now", color: "bg-green-100 text-green-600" },
-  { icon: Mail, title: "Email Support", desc: "support@tmcshop.com — response within 24hrs", action: "Send Email", color: "bg-purple-100 text-purple-600" },
+  { icon: MessageCircle, title: "Viber Chat", desc: "Chat with our support team via Viber", action: "Open Viber", iconBg: "bg-purple-500/15", iconColor: "text-purple-500", hoverGlow: "hover:shadow-purple-500/20" },
+  { icon: Phone, title: "Call Us", desc: "+63 912 345 6789 (Mon-Sat, 9AM-6PM)", action: "Call Now", iconBg: "bg-emerald-500/15", iconColor: "text-emerald-500", hoverGlow: "hover:shadow-emerald-500/20" },
+  { icon: Mail, title: "Email Support", desc: "support@tmcshop.com — response within 24hrs", action: "Send Email", iconBg: "bg-violet-500/15", iconColor: "text-violet-500", hoverGlow: "hover:shadow-violet-500/20" },
 ];
 
 const helpCategories = [
@@ -24,7 +24,6 @@ const helpCategories = [
   { icon: CreditCard, title: "Payments & Billing", desc: "Payment methods, invoices, and transaction help" },
   { icon: Truck, title: "Delivery Information", desc: "Shipping times, fees, and delivery areas" },
   { icon: Globe, title: "Global Sourcing", desc: "Bulk orders, sourcing inquiries, and supplier info" },
-  
   { icon: ShieldCheck, title: "Account & Security", desc: "Account settings, password, and privacy" },
   { icon: HelpCircle, title: "General Inquiries", desc: "Other questions and feedback" },
 ];
@@ -47,15 +46,19 @@ const Help = () => {
           </div>
 
           {/* Support Options */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
-            {supportOptions.map((opt) => (
-              <div key={opt.title} className="bg-card border rounded-xl p-5 text-center hover:shadow-md transition-shadow">
-                <div className={`inline-flex p-3 rounded-full ${opt.color} mb-3`}>
-                  <opt.icon className="h-6 w-6" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
+            {supportOptions.map((opt, i) => (
+              <div
+                key={opt.title}
+                className={`bg-card rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${opt.hoverGlow} animate-fade-in border border-border/40`}
+                style={{ animationDelay: `${i * 100}ms`, animationFillMode: 'both' }}
+              >
+                <div className={`inline-flex p-4 rounded-2xl ${opt.iconBg} mb-4 transition-transform duration-300 hover:scale-110`}>
+                  <opt.icon className={`h-7 w-7 ${opt.iconColor}`} />
                 </div>
-                <h3 className="font-semibold text-foreground mb-1">{opt.title}</h3>
-                <p className="text-xs text-muted-foreground mb-3">{opt.desc}</p>
-                <Button variant="outline" size="sm" className="rounded-full text-xs">
+                <h3 className="font-bold text-foreground text-lg mb-1">{opt.title}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{opt.desc}</p>
+                <Button variant="outline" size="sm" className="rounded-full px-6 border-border/60 hover:bg-accent hover:text-accent-foreground hover:border-accent transition-all duration-200">
                   {opt.action}
                 </Button>
               </div>
@@ -66,7 +69,7 @@ const Help = () => {
           <h2 className="font-heading text-xl font-bold text-foreground mb-4">Browse by Topic</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-10">
             {helpCategories.map((cat) => (
-              <div key={cat.title} className="bg-card border rounded-xl p-4 hover:shadow-md transition-shadow cursor-pointer group">
+              <div key={cat.title} className="bg-card rounded-xl p-4 hover:shadow-md transition-all duration-300 cursor-pointer group border border-border/40 hover:-translate-y-0.5">
                 <cat.icon className="h-5 w-5 text-accent mb-2 group-hover:scale-110 transition-transform" />
                 <h4 className="font-semibold text-sm text-foreground mb-1">{cat.title}</h4>
                 <p className="text-xs text-muted-foreground">{cat.desc}</p>
@@ -78,7 +81,7 @@ const Help = () => {
           <h2 className="font-heading text-xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
           <div className="space-y-3">
             {faqs.map((faq, i) => (
-              <details key={i} className="bg-card border rounded-xl overflow-hidden group">
+              <details key={i} className="bg-card rounded-xl overflow-hidden group border border-border/40">
                 <summary className="px-5 py-4 cursor-pointer font-medium text-foreground hover:bg-secondary/50 transition-colors flex items-center gap-2">
                   <HelpCircle className="h-4 w-4 text-accent flex-shrink-0" />
                   {faq.q}
