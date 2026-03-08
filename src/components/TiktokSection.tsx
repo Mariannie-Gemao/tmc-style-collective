@@ -9,7 +9,7 @@ const TiktokSection = () => {
   const { products, loading } = useRealtimeProducts("tiktok");
 
   return (
-    <section className="py-10 bg-background">
+    <section id="tiktok-products" className="py-10 bg-background">
       <div className="container">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
