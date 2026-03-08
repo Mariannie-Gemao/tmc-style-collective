@@ -14,6 +14,7 @@ const products = [
 ];
 
 const HeroBanner = () => {
+  const navigate = useNavigate();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
