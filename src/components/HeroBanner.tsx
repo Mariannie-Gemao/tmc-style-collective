@@ -90,7 +90,7 @@ const HeroBanner = () => {
               <Button 
                 size="lg" 
                 className="bg-accent hover:bg-accent-dark text-accent-foreground font-semibold px-6 md:px-8 rounded-full group animate-pulse-glow btn-shine"
-                onClick={() => { const nav = document.createElement('a'); nav.href = '/tiktok-products'; nav.click(); }}
+                onClick={() => navigate("/tiktok-products")}
               >
                 Browse Products
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
