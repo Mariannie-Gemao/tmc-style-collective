@@ -98,9 +98,6 @@ const SignIn = () => {
         <div className="w-full max-w-sm">
           <div className="backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-8 sm:p-10">
             <div className="flex flex-col items-center mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <img src={tmcLogo} alt="TMC Shop" className="h-14 w-14 rounded-full object-cover ring-2 ring-accent/50 shadow-lg" />
-              </div>
               <h2 className="font-heading text-2xl font-bold text-white">Welcome Back</h2>
               <p className="text-sm text-white/60 mt-1">Sign in to your account</p>
             </div>
