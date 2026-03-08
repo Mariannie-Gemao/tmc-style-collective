@@ -88,7 +88,7 @@ const HeroBanner = () => {
               <Button 
                 size="lg" 
                 className="bg-accent hover:bg-accent-dark text-accent-foreground font-semibold px-6 md:px-8 rounded-full group animate-pulse-glow btn-shine"
-                onClick={() => scrollToSection("featured-products")}
+                onClick={() => { const nav = document.createElement('a'); nav.href = '/tiktok-products'; nav.click(); }}
               >
                 Browse Products
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -99,7 +99,7 @@ const HeroBanner = () => {
                 className="border-2 border-primary-foreground/30 text-primary-foreground bg-transparent hover:bg-primary-foreground/10 rounded-full btn-shine"
                 onClick={() => scrollToSection("flash-deals")}
               >
-                Today's Deals
+                Source Products
               </Button>
             </div>
           </div>
