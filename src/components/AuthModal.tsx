@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ShieldCheck, UserPlus } from "lucide-react";
-import tmcLogo from "@/assets/tmc-logo.png";
+
 
 const AuthModal = () => {
   const { showAuthModal, setShowAuthModal } = useAuth();
