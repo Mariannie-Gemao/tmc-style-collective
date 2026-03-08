@@ -37,11 +37,16 @@ const ProductCard = ({ product, isFlashDeal = false }: ProductCardProps) => {
     >
       {/* Image Container */}
       <div className="relative aspect-square bg-secondary overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5" />
-        
-        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-          <ShoppingCart className="h-12 w-12 opacity-30" />
-        </div>
+        {product.image ? (
+          <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5" />
+            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+              <ShoppingCart className="h-12 w-12 opacity-30" />
+            </div>
+          </>
+        )}
         
         {product.discount && (
           <Badge className="absolute top-2 left-2 bg-accent text-accent-foreground font-bold animate-pulse-slow">
