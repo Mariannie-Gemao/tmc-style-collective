@@ -14,7 +14,7 @@ const faqs = [
 ];
 
 const supportOptions = [
-  { icon: MessageCircle, title: "Live Chat", desc: "Chat with our support team in real-time", action: "Start Chat", color: "bg-blue-100 text-blue-600" },
+  { icon: MessageCircle, title: "Viber Chat", desc: "Chat with our support team via Viber", action: "Open Viber", color: "bg-purple-100 text-purple-600" },
   { icon: Phone, title: "Call Us", desc: "+63 912 345 6789 (Mon-Sat, 9AM-6PM)", action: "Call Now", color: "bg-green-100 text-green-600" },
   { icon: Mail, title: "Email Support", desc: "support@tmcshop.com — response within 24hrs", action: "Send Email", color: "bg-purple-100 text-purple-600" },
 ];
