@@ -99,7 +99,7 @@ const HeroBanner = () => {
                 size="lg" 
                 variant="outline" 
                 className="border-2 border-primary-foreground/30 text-primary-foreground bg-transparent hover:bg-primary-foreground/10 rounded-full btn-shine"
-                onClick={() => scrollToSection("flash-deals")}
+                onClick={() => scrollToSection("special-products")}
               >
                 Source Products
               </Button>
