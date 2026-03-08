@@ -271,28 +271,37 @@ const Header = () => {
         </div>
       </nav>
 
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="lg:hidden fixed inset-0 top-[calc(6.5rem)] z-40 bg-primary/30 backdrop-blur-sm animate-fade-in" onClick={() => setIsMenuOpen(false)} />
+      )}
+
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-card border-b animate-slide-up max-h-[70vh] overflow-y-auto">
-          <nav className="container py-4 space-y-3">
-            {navGroups.map((group) => (
-              <div key={group.label}>
+        <div className="lg:hidden fixed top-[calc(6.5rem)] left-0 right-0 z-50 bg-card border-b shadow-lg animate-fade-in max-h-[70vh] overflow-y-auto">
+          <nav className="container py-4 space-y-2">
+            {navGroups.map((group, groupIdx) => (
+              <div key={group.label} className="animate-fade-in" style={{ animationDelay: `${groupIdx * 80}ms`, animationFillMode: 'both' }}>
                 <button onClick={() => { navigate(group.path); setIsMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-2 text-sm font-bold text-foreground hover:bg-secondary rounded-lg transition-colors">
+                  className="flex items-center gap-2 w-full text-left px-4 py-2.5 text-sm font-bold text-primary hover:bg-accent/10 rounded-xl transition-all duration-200 group">
+                  <div className="h-1.5 w-1.5 rounded-full bg-accent group-hover:scale-150 transition-transform" />
                   {group.label}
+                  <ChevronDown className="h-3.5 w-3.5 ml-auto text-muted-foreground" />
                 </button>
-                <div className="ml-4 space-y-1 mt-1">
+                <div className="ml-2 mt-1 space-y-0.5 border-l-2 border-accent/20 pl-2">
                   {group.label === "Special Products" ? (
-                    specialCategories.map((sub) => (
+                    specialCategories.map((sub, i) => (
                       <button key={sub.name} onClick={() => { navigate(`/special-products/${sub.slug}`); setIsMenuOpen(false); }}
-                        className="block w-full text-left px-4 py-1.5 text-sm text-muted-foreground hover:text-accent hover:bg-secondary rounded-lg transition-colors">
+                        className="block w-full text-left px-4 py-2.5 text-sm text-muted-foreground hover:text-accent hover:bg-accent/5 rounded-xl transition-all duration-200 hover:translate-x-1 animate-fade-in"
+                        style={{ animationDelay: `${groupIdx * 80 + (i + 1) * 40}ms`, animationFillMode: 'both' }}>
                         {sub.name}
                       </button>
                     ))
                   ) : (
-                    tiktokShopeeCategories.map((sub) => (
+                    tiktokShopeeCategories.map((sub, i) => (
                       <button key={sub} onClick={() => { navigate(`/category/${sub.toLowerCase().replace(/ /g, "-")}`); setIsMenuOpen(false); }}
-                        className="block w-full text-left px-4 py-1.5 text-sm text-muted-foreground hover:text-accent hover:bg-secondary rounded-lg transition-colors">
+                        className="block w-full text-left px-4 py-2.5 text-sm text-muted-foreground hover:text-accent hover:bg-accent/5 rounded-xl transition-all duration-200 hover:translate-x-1 animate-fade-in"
+                        style={{ animationDelay: `${groupIdx * 80 + (i + 1) * 40}ms`, animationFillMode: 'both' }}>
                         {sub}
                       </button>
                     ))
