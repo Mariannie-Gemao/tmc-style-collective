@@ -94,7 +94,10 @@ const SignUp = () => {
       {/* Right Panel - Glassmorphism Form */}
       <div className="flex-1 lg:w-[480px] xl:w-[520px] lg:flex-none flex items-center justify-center p-6 sm:p-10 min-h-screen lg:min-h-0 z-10">
         <div className="w-full max-w-sm">
-          <div className="backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-8 sm:p-10">
+          <div className="relative backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-8 sm:p-10 overflow-hidden">
+            {/* Light sweep effect */}
+            <div className="absolute -top-24 -left-24 w-48 h-48 bg-white/20 rounded-full blur-3xl pointer-events-none animate-pulse-slow" />
+            <div className="absolute -bottom-16 -right-16 w-40 h-40 bg-accent/15 rounded-full blur-3xl pointer-events-none animate-pulse-slow" style={{ animationDelay: "3s" }} />
             <div className="flex flex-col items-center mb-8">
               <h2 className="font-heading text-2xl font-bold text-white">Create Account</h2>
               <p className="text-sm text-white/60 mt-1">Join us and start shopping today</p>
