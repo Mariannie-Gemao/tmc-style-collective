@@ -153,6 +153,13 @@ const Header = () => {
               )}
             </Button>
 
+            <Button variant="ghost" size="icon" className="relative hover:bg-accent/10 hover:text-accent transition-colors" onClick={() => handleProtectedNav("/cart")}>
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-accent-foreground text-xs font-medium flex items-center justify-center">{cartCount}</span>
+              )}
+            </Button>
+
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="hover:bg-accent/10 hover:text-accent transition-colors">
@@ -163,7 +170,10 @@ const Header = () => {
                 <div className="px-2 py-1.5 text-sm font-bold text-foreground">My Account</div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => handleProtectedNav("/my-purchase")}>My Purchase</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => handleProtectedNav("/my-favorites")}>My Favorites</DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => navigate("/help")}>My Profile</DropdownMenuItem>
+                {isAuthenticated && (
+                  <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => handleProtectedNav("/my-favorites")}>My Favorites</DropdownMenuItem>
+                )}
                 {isAdmin && (
                   <>
                     <DropdownMenuSeparator />
@@ -183,12 +193,6 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button variant="ghost" size="icon" className="relative hover:bg-accent/10 hover:text-accent transition-colors" onClick={() => handleProtectedNav("/cart")}>
-              <ShoppingCart className="h-5 w-5" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-accent-foreground text-xs font-medium flex items-center justify-center">{cartCount}</span>
-              )}
-            </Button>
           </div>
         </div>
 

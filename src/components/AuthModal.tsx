@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ShieldCheck, UserPlus } from "lucide-react";
-import tmcLogo from "@/assets/tmc-logo.png";
+
 
 const AuthModal = () => {
   const { showAuthModal, setShowAuthModal } = useAuth();
@@ -13,7 +13,6 @@ const AuthModal = () => {
     <Dialog open={showAuthModal} onOpenChange={setShowAuthModal}>
       <DialogContent className="sm:max-w-md text-center p-8">
         <div className="flex flex-col items-center gap-4">
-          <img src={tmcLogo} alt="TMC Shop" className="h-16 w-16 rounded-full object-cover" />
           <div className="bg-accent/10 p-3 rounded-full">
             <ShieldCheck className="h-8 w-8 text-accent" />
           </div>

@@ -1,4 +1,4 @@
-import { ArrowLeft, MessageCircle, Phone, Mail, HelpCircle, Package, CreditCard, Truck, RotateCcw, ShieldCheck, Globe } from "lucide-react";
+import { ArrowLeft, MessageCircle, Phone, Mail, HelpCircle, Package, CreditCard, Truck, ShieldCheck, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import PageLoader from "@/components/PageLoader";
@@ -14,7 +14,7 @@ const faqs = [
 ];
 
 const supportOptions = [
-  { icon: MessageCircle, title: "Live Chat", desc: "Chat with our support team in real-time", action: "Start Chat", color: "bg-blue-100 text-blue-600" },
+  { icon: MessageCircle, title: "Viber Chat", desc: "Chat with our support team via Viber", action: "Open Viber", color: "bg-purple-100 text-purple-600" },
   { icon: Phone, title: "Call Us", desc: "+63 912 345 6789 (Mon-Sat, 9AM-6PM)", action: "Call Now", color: "bg-green-100 text-green-600" },
   { icon: Mail, title: "Email Support", desc: "support@tmcshop.com — response within 24hrs", action: "Send Email", color: "bg-purple-100 text-purple-600" },
 ];
@@ -24,7 +24,7 @@ const helpCategories = [
   { icon: CreditCard, title: "Payments & Billing", desc: "Payment methods, invoices, and transaction help" },
   { icon: Truck, title: "Delivery Information", desc: "Shipping times, fees, and delivery areas" },
   { icon: Globe, title: "Global Sourcing", desc: "Bulk orders, sourcing inquiries, and supplier info" },
-  { icon: RotateCcw, title: "Returns & Refunds", desc: "Return policies and refund processing" },
+  
   { icon: ShieldCheck, title: "Account & Security", desc: "Account settings, password, and privacy" },
   { icon: HelpCircle, title: "General Inquiries", desc: "Other questions and feedback" },
 ];
