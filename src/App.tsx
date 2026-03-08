@@ -22,6 +22,7 @@ import ShopeeProducts from "./pages/ShopeeProducts";
 import SpecialProducts from "./pages/SpecialProducts";
 import SourcingCategory from "./pages/SourcingCategory";
 import AdminDashboard from "./pages/AdminDashboard";
+import AboutUs from "./pages/AboutUs";
 import MyProfile from "./pages/MyProfile";
 import NotFound from "./pages/NotFound";
 
@@ -54,6 +55,7 @@ const App = () => (
                 <Route path="/my-profile" element={<MyProfile />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/about" element={<AboutUs />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>

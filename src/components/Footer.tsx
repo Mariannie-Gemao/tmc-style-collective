@@ -1,6 +1,34 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+const quickLinks = [
+  { label: "About Us", path: "/about" },
+  { label: "TikTok Products", scrollTo: "tiktok-products" },
+  { label: "Shopee Products", scrollTo: "shopee-products" },
+  { label: "Special Products", scrollTo: "special-products" },
+];
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleQuickLink = (link: typeof quickLinks[number]) => {
+    if (link.path) {
+      navigate(link.path);
+      return;
+    }
+    // If on homepage, scroll directly; otherwise navigate home then scroll
+    if (window.location.pathname === "/") {
+      const el = document.getElementById(link.scrollTo!);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        const el = document.getElementById(link.scrollTo!);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 500);
+    }
+  };
+
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container py-12">
@@ -15,9 +43,14 @@ const Footer = () => {
           <div>
             <h4 className="font-heading font-semibold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {["About Us", "Shop All", "Flash Deals", "New Arrivals", "Best Sellers"].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-primary-foreground/70 hover:text-accent transition-colors">{link}</a>
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <button
+                    onClick={() => handleQuickLink(link)}
+                    className="text-primary-foreground/70 hover:text-accent transition-colors"
+                  >
+                    {link.label}
+                  </button>
                 </li>
               ))}
             </ul>
