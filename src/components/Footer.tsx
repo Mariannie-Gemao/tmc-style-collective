@@ -36,7 +36,7 @@ const Footer = () => {
           <div>
             <span className="font-heading font-bold text-xl mb-4 block">TMC Shop</span>
             <p className="text-primary-foreground/70 mb-4">
-              Your trusted destination for trending TikTok products. Quality items at unbeatable prices.
+              Your one-stop shop for trending products from TikTok, Shopee, and global sourcing — quality items at unbeatable prices.
             </p>
           </div>
 
