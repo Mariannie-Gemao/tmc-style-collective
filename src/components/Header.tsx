@@ -170,7 +170,10 @@ const Header = () => {
                 <div className="px-2 py-1.5 text-sm font-bold text-foreground">My Account</div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => handleProtectedNav("/my-purchase")}>My Purchase</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => handleProtectedNav("/my-favorites")}>My Favorites</DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => navigate("/help")}>My Profile</DropdownMenuItem>
+                {isAuthenticated && (
+                  <DropdownMenuItem className="cursor-pointer text-foreground hover:!bg-accent hover:!text-accent-foreground" onClick={() => handleProtectedNav("/my-favorites")}>My Favorites</DropdownMenuItem>
+                )}
                 {isAdmin && (
                   <>
                     <DropdownMenuSeparator />
