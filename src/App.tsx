@@ -55,6 +55,7 @@ const App = () => (
                 <Route path="/my-profile" element={<MyProfile />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/about" element={<AboutUs />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
