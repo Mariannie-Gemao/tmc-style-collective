@@ -71,6 +71,10 @@ const Footer = () => {
                 <MapPin className="h-5 w-5 text-accent flex-shrink-0" />
                 Manila, Philippines
               </li>
+              <li className="flex items-center gap-3 text-primary-foreground/70">
+                <MessageCircle className="h-5 w-5 text-accent" />
+                Viber Chat
+              </li>
             </ul>
           </div>
         </div>
