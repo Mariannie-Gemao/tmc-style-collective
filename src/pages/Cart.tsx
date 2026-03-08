@@ -1,15 +1,35 @@
 import { Trash2, ShoppingCart, ArrowLeft, ShoppingBag, Sparkles, Package, Shield, Truck, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import PageLoader from "@/components/PageLoader";
+import { useState } from "react";
 
 const Cart = () => {
   const { cart, removeFromCart } = useCart();
   const navigate = useNavigate();
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set(cart.map(i => i.id)));
 
-  const total = cart.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
-  const shipping = total > 2000 ? 0 : 99;
+  const toggleItem = (id: number) => {
+    setSelectedIds(prev => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
+
+  const toggleAll = () => {
+    if (selectedIds.size === cart.length) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(cart.map(i => i.id)));
+    }
+  };
+
+  const selectedItems = cart.filter(item => selectedIds.has(item.id));
+  const total = selectedItems.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
+  const shipping = total > 2000 ? 0 : total === 0 ? 0 : 99;
   const grandTotal = total + shipping;
 
   return (
@@ -51,20 +71,43 @@ const Cart = () => {
         ) : (
           <div className="container py-6 lg:py-8">
             <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
-              {/* Cart Items — takes 3 cols */}
+              {/* Cart Items */}
               <div className="lg:col-span-3 space-y-3">
+                {/* Select All */}
+                <div className="flex items-center gap-3 px-2 pb-2">
+                  <Checkbox
+                    checked={selectedIds.size === cart.length}
+                    onCheckedChange={toggleAll}
+                    className="h-5 w-5 border-2 border-accent/40 data-[state=checked]:bg-accent data-[state=checked]:border-accent"
+                  />
+                  <span className="text-sm font-medium text-muted-foreground">
+                    Select All ({selectedIds.size}/{cart.length})
+                  </span>
+                </div>
+
                 {cart.map((item, index) => (
                   <div
                     key={item.id}
-                    className="group relative bg-card rounded-2xl border border-border/40 overflow-hidden animate-fade-in hover:border-accent/30 transition-all duration-500"
+                    className={`group relative bg-card rounded-2xl border overflow-hidden animate-fade-in transition-all duration-500 ${
+                      selectedIds.has(item.id)
+                        ? 'border-accent/30 shadow-sm'
+                        : 'border-border/40 opacity-60'
+                    } hover:border-accent/30 hover:opacity-100`}
                     style={{ animationDelay: `${index * 80}ms` }}
                   >
                     {/* Hover accent line */}
                     <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
 
-                    <div className="flex gap-4 p-4 sm:p-5">
+                    <div className="flex items-center gap-3 p-4 sm:p-5">
+                      {/* Checkbox */}
+                      <Checkbox
+                        checked={selectedIds.has(item.id)}
+                        onCheckedChange={() => toggleItem(item.id)}
+                        className="flex-shrink-0 h-5 w-5 border-2 border-accent/40 data-[state=checked]:bg-accent data-[state=checked]:border-accent rounded-md transition-colors"
+                      />
+
                       {/* Image */}
-                      <div className="relative flex-shrink-0 w-[88px] h-[88px] sm:w-[100px] sm:h-[100px] rounded-xl overflow-hidden bg-muted">
+                      <div className="relative flex-shrink-0 w-[80px] h-[80px] sm:w-[96px] sm:h-[96px] rounded-xl overflow-hidden bg-muted">
                         <img
                           src={item.image}
                           alt={item.product}
@@ -90,14 +133,9 @@ const Cart = () => {
                           </div>
                           <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-accent/80 mt-0.5">{item.shop}</span>
                         </div>
-
                         <div className="flex items-end justify-between mt-2">
-                          <span className="text-xs text-muted-foreground">
-                            ₱{item.unitPrice.toLocaleString()} × {item.quantity}
-                          </span>
-                          <span className="font-heading font-bold text-lg text-accent">
-                            ₱{(item.unitPrice * item.quantity).toLocaleString()}
-                          </span>
+                          <span className="text-xs text-muted-foreground">₱{item.unitPrice.toLocaleString()} × {item.quantity}</span>
+                          <span className="font-heading font-bold text-lg text-accent">₱{(item.unitPrice * item.quantity).toLocaleString()}</span>
                         </div>
                       </div>
                     </div>
@@ -105,51 +143,60 @@ const Cart = () => {
                 ))}
               </div>
 
-              {/* Sidebar — takes 2 cols */}
+              {/* Sidebar */}
               <div className="lg:col-span-2">
                 <div className="sticky top-24 space-y-4 animate-fade-in" style={{ animationDelay: '150ms' }}>
-                  {/* Summary Card */}
                   <div className="bg-card border border-border/40 rounded-2xl overflow-hidden">
                     <div className="px-6 py-4 border-b border-border/40 bg-accent/[0.03]">
                       <h2 className="font-heading font-bold text-foreground flex items-center gap-2">
                         <Sparkles className="h-4 w-4 text-accent" />
                         Summary
+                        <span className="text-xs font-normal text-muted-foreground ml-auto">{selectedItems.length} selected</span>
                       </h2>
                     </div>
 
                     <div className="p-6 space-y-4">
-                      {cart.map((item) => (
-                        <div key={item.id} className="flex justify-between text-sm">
-                          <span className="text-muted-foreground truncate mr-4">{item.product} <span className="opacity-50">×{item.quantity}</span></span>
-                          <span className="text-foreground font-medium whitespace-nowrap">₱{(item.unitPrice * item.quantity).toLocaleString()}</span>
-                        </div>
-                      ))}
+                      {selectedItems.length === 0 ? (
+                        <p className="text-sm text-muted-foreground text-center py-4">Select items to checkout</p>
+                      ) : (
+                        <>
+                          {selectedItems.map((item) => (
+                            <div key={item.id} className="flex justify-between text-sm">
+                              <span className="text-muted-foreground truncate mr-4">{item.product} <span className="opacity-50">×{item.quantity}</span></span>
+                              <span className="text-foreground font-medium whitespace-nowrap">₱{(item.unitPrice * item.quantity).toLocaleString()}</span>
+                            </div>
+                          ))}
 
-                      <div className="border-t border-dashed border-border/60 pt-4 space-y-2.5">
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Subtotal</span>
-                          <span className="text-foreground">₱{total.toLocaleString()}</span>
-                        </div>
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Shipping</span>
-                          <span className={shipping === 0 ? 'text-green-500 font-semibold text-xs' : 'text-foreground'}>
-                            {shipping === 0 ? 'FREE' : `₱${shipping}`}
-                          </span>
-                        </div>
-                        {shipping > 0 && (
-                          <p className="text-[11px] text-accent/80 bg-accent/5 rounded-lg px-3 py-1.5 text-center">
-                            Spend ₱{(2000 - total).toLocaleString()} more for free shipping!
-                          </p>
-                        )}
-                      </div>
+                          <div className="border-t border-dashed border-border/60 pt-4 space-y-2.5">
+                            <div className="flex justify-between text-sm">
+                              <span className="text-muted-foreground">Subtotal</span>
+                              <span className="text-foreground">₱{total.toLocaleString()}</span>
+                            </div>
+                            <div className="flex justify-between text-sm">
+                              <span className="text-muted-foreground">Shipping</span>
+                              <span className={shipping === 0 ? 'text-green-500 font-semibold text-xs' : 'text-foreground'}>
+                                {shipping === 0 ? 'FREE' : `₱${shipping}`}
+                              </span>
+                            </div>
+                            {shipping > 0 && (
+                              <p className="text-[11px] text-accent/80 bg-accent/5 rounded-lg px-3 py-1.5 text-center">
+                                Spend ₱{(2000 - total).toLocaleString()} more for free shipping!
+                              </p>
+                            )}
+                          </div>
 
-                      <div className="border-t pt-4 flex justify-between items-baseline">
-                        <span className="font-heading font-bold text-foreground">Total</span>
-                        <span className="font-heading font-bold text-2xl text-accent">₱{grandTotal.toLocaleString()}</span>
-                      </div>
+                          <div className="border-t pt-4 flex justify-between items-baseline">
+                            <span className="font-heading font-bold text-foreground">Total</span>
+                            <span className="font-heading font-bold text-2xl text-accent">₱{grandTotal.toLocaleString()}</span>
+                          </div>
+                        </>
+                      )}
 
-                      <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-full font-heading font-bold h-12 text-[15px] btn-shine relative overflow-hidden btn-glow-accent shadow-md mt-1">
-                        Checkout
+                      <Button
+                        disabled={selectedItems.length === 0}
+                        className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-full font-heading font-bold h-12 text-[15px] btn-shine relative overflow-hidden btn-glow-accent shadow-md mt-1 disabled:opacity-40 disabled:cursor-not-allowed"
+                      >
+                        Checkout ({selectedItems.length})
                       </Button>
 
                       <button onClick={() => navigate("/")} className="w-full text-center text-sm text-muted-foreground hover:text-accent transition-colors py-1">
