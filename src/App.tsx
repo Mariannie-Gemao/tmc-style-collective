@@ -51,6 +51,7 @@ const App = () => (
                 <Route path="/special-products" element={<SpecialProducts />} />
                 <Route path="/special-products/:slug" element={<SourcingCategory />} />
                 <Route path="/search" element={<SearchResults />} />
+                <Route path="/my-profile" element={<MyProfile />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="*" element={<NotFound />} />
