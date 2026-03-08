@@ -91,8 +91,8 @@ const Cart = () => {
                     className={`group relative bg-card rounded-2xl border overflow-hidden animate-fade-in transition-all duration-500 ${
                       selectedIds.has(item.id)
                         ? 'border-accent/30 shadow-sm'
-                        : 'border-border/40 opacity-60'
-                    } hover:border-accent/30 hover:opacity-100`}
+                        : 'border-border/40'
+                    } hover:border-accent/30`}
                     style={{ animationDelay: `${index * 80}ms` }}
                   >
                     {/* Hover accent line */}
