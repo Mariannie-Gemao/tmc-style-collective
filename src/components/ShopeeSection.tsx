@@ -9,7 +9,7 @@ const ShopeeSection = () => {
   const { products, loading } = useRealtimeProducts("shopee");
 
   return (
-    <section className="py-10 bg-secondary/50">
+    <section id="shopee-products" className="py-10 bg-secondary/50">
       <div className="container">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">

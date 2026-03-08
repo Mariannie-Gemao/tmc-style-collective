@@ -22,6 +22,7 @@ import ShopeeProducts from "./pages/ShopeeProducts";
 import SpecialProducts from "./pages/SpecialProducts";
 import SourcingCategory from "./pages/SourcingCategory";
 import AdminDashboard from "./pages/AdminDashboard";
+import AboutUs from "./pages/AboutUs";
 import MyProfile from "./pages/MyProfile";
 import NotFound from "./pages/NotFound";
 
