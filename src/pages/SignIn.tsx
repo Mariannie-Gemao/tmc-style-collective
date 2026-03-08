@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Mail, Lock, ShieldCheck, BarChart3, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import tmcLogo from "@/assets/tmc-logo.png";
+
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
