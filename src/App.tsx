@@ -22,6 +22,7 @@ import ShopeeProducts from "./pages/ShopeeProducts";
 import SpecialProducts from "./pages/SpecialProducts";
 import SourcingCategory from "./pages/SourcingCategory";
 import AdminDashboard from "./pages/AdminDashboard";
+import MyProfile from "./pages/MyProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +51,7 @@ const App = () => (
                 <Route path="/special-products" element={<SpecialProducts />} />
                 <Route path="/special-products/:slug" element={<SourcingCategory />} />
                 <Route path="/search" element={<SearchResults />} />
+                <Route path="/my-profile" element={<MyProfile />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="*" element={<NotFound />} />
