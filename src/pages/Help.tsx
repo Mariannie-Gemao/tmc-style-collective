@@ -24,7 +24,7 @@ const helpCategories = [
   { icon: CreditCard, title: "Payments & Billing", desc: "Payment methods, invoices, and transaction help" },
   { icon: Truck, title: "Delivery Information", desc: "Shipping times, fees, and delivery areas" },
   { icon: Globe, title: "Global Sourcing", desc: "Bulk orders, sourcing inquiries, and supplier info" },
-  { icon: RotateCcw, title: "Returns & Refunds", desc: "Return policies and refund processing" },
+  
   { icon: ShieldCheck, title: "Account & Security", desc: "Account settings, password, and privacy" },
   { icon: HelpCircle, title: "General Inquiries", desc: "Other questions and feedback" },
 ];
