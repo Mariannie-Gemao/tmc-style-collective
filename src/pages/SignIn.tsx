@@ -80,7 +80,7 @@ const SignIn = () => {
       {/* Flowing S-curve divider between panels */}
       <div className="hidden lg:block absolute inset-0 z-[5] pointer-events-none overflow-hidden">
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M65 -5 C40 20, 70 40, 50 55 C30 70, 60 85, 55 105" stroke="white" strokeOpacity="0.2" strokeWidth="0.15" fill="none" />
+          <path d="M65 -5 C40 20, 70 40, 50 55 C30 70, 60 85, 55 105" stroke="white" strokeOpacity="0.35" strokeWidth="0.5" fill="none" />
         </svg>
       </div>
 
