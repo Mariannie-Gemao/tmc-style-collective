@@ -77,6 +77,14 @@ const SignIn = () => {
         <p className="relative z-10 text-xs text-white/40 mt-8 lg:mt-auto">© 2026 TMC SHOP · ALL RIGHTS RESERVED</p>
       </div>
 
+      {/* Curved divider between panels */}
+      <div className="hidden lg:block absolute right-[480px] xl:right-[520px] top-0 bottom-0 z-[5] w-24">
+        <svg className="h-full w-full" viewBox="0 0 100 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 0 C30 200, 80 400, 20 600 C60 700, 40 750, 100 800 L100 0Z" fill="white" fillOpacity="0.05" />
+          <path d="M100 0 C40 180, 90 380, 30 580 C70 700, 50 740, 100 800" stroke="white" strokeOpacity="0.1" strokeWidth="1" fill="none" />
+        </svg>
+      </div>
+
       {/* Right Panel - Glassmorphism Form */}
       <div className="flex-1 lg:w-[480px] xl:w-[520px] lg:flex-none flex items-center justify-center p-6 sm:p-10 min-h-screen lg:min-h-0 z-10">
         <div className="w-full max-w-sm">
