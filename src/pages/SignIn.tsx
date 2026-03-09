@@ -77,10 +77,10 @@ const SignIn = () => {
         <p className="relative z-10 text-xs text-white/40 mt-8 lg:mt-auto">© 2026 TMC SHOP · ALL RIGHTS RESERVED</p>
       </div>
 
-      {/* Flowing S-curve divider */}
+      {/* Flowing S-curve divider between panels */}
       <div className="hidden lg:block absolute inset-0 z-[5] pointer-events-none overflow-hidden">
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M-50 0 C200 150, 400 350, 350 500 C300 650, 600 750, 1500 900" stroke="white" strokeOpacity="0.08" strokeWidth="1.5" fill="none" />
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M65 -5 C40 20, 70 40, 50 55 C30 70, 60 85, 55 105" stroke="white" strokeOpacity="0.2" strokeWidth="0.15" fill="none" />
         </svg>
       </div>
 
