@@ -80,30 +80,6 @@ const SignIn = () => {
             ))}
           </div>
 
-          {/* Floating Product Showcase */}
-          <div className="hidden lg:grid grid-cols-3 gap-4 mt-12">
-            {[
-              { img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop", label: "Watches", delay: "0s" },
-              { img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop", label: "Audio", delay: "1s" },
-              { img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200&h=200&fit=crop", label: "Eyewear", delay: "2s" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="relative group animate-float"
-                style={{ animationDelay: item.delay }}
-              >
-                <div className="overflow-hidden rounded-2xl border-2 border-white/20 shadow-xl backdrop-blur-sm bg-white/5 hover:border-accent/50 transition-all duration-500 hover:scale-105">
-                  <img
-                    src={item.img}
-                    alt={item.label}
-                    className="w-full aspect-square object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
-                  <p className="absolute bottom-2 left-0 right-0 text-center text-xs font-semibold text-white/90 tracking-wide">{item.label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         <p className="relative z-10 text-xs text-white/40 mt-8 lg:mt-auto">© 2026 TMC SHOP · ALL RIGHTS RESERVED</p>
