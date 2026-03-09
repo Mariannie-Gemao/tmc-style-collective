@@ -81,7 +81,7 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-primary-foreground/10">
-        <div className="container py-8 flex items-center justify-center text-sm text-primary-foreground/60">
+        <div className="container py-10 flex items-center justify-center text-sm text-primary-foreground/60">
           <p>© 2026 TMC SHOP · ALL RIGHTS RESERVED</p>
         </div>
       </div>
