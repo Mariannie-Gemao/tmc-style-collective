@@ -72,21 +72,29 @@ const SignIn = () => {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-4 mt-12">
-            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 shadow-lg flex items-center gap-2 animate-float">
-              <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
-              <div>
-                <p className="text-xs font-semibold text-white">Shop Active</p>
-                <p className="text-[10px] text-white/60">All services online</p>
+          {/* Floating Product Showcase */}
+          <div className="hidden lg:grid grid-cols-3 gap-4 mt-12">
+            {[
+              { img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop", label: "Watches", delay: "0s" },
+              { img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop", label: "Audio", delay: "1s" },
+              { img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200&h=200&fit=crop", label: "Eyewear", delay: "2s" },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="relative group animate-float"
+                style={{ animationDelay: item.delay }}
+              >
+                <div className="overflow-hidden rounded-2xl border-2 border-white/20 shadow-xl backdrop-blur-sm bg-white/5 hover:border-accent/50 transition-all duration-500 hover:scale-105">
+                  <img
+                    src={item.img}
+                    alt={item.label}
+                    className="w-full aspect-square object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
+                  <p className="absolute bottom-2 left-0 right-0 text-center text-xs font-semibold text-white/90 tracking-wide">{item.label}</p>
+                </div>
               </div>
-            </div>
-            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 shadow-lg flex items-center gap-2 animate-float" style={{ animationDelay: "1s" }}>
-              <span className="h-2.5 w-2.5 rounded-full bg-blue-400" />
-              <div>
-                <p className="text-xs font-semibold text-white">Secure Connection</p>
-                <p className="text-[10px] text-white/60">Encrypted & safe</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
