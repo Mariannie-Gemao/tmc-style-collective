@@ -35,11 +35,19 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col lg:flex-row bg-gradient-to-br from-primary-dark via-primary to-primary-light relative overflow-hidden">
-      {/* Animated background orbs */}
+      {/* Background product images */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent/15 rounded-full blur-[120px] animate-pulse-slow" />
         <div className="absolute bottom-[-15%] right-[-10%] w-[600px] h-[600px] bg-accent/10 rounded-full blur-[150px] animate-pulse-slow" style={{ animationDelay: "2s" }} />
         <div className="absolute top-[40%] right-[20%] w-[300px] h-[300px] bg-white/5 rounded-full blur-[100px] animate-pulse-slow" style={{ animationDelay: "4s" }} />
+        
+        {/* Floating product images as background elements */}
+        <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=300&h=300&fit=crop" alt="" className="absolute top-[8%] left-[5%] w-32 h-32 lg:w-44 lg:h-44 object-cover rounded-3xl opacity-10 rotate-[-12deg] animate-float" style={{ animationDelay: "0s" }} />
+        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=300&h=300&fit=crop" alt="" className="absolute top-[15%] right-[8%] w-28 h-28 lg:w-36 lg:h-36 object-cover rounded-2xl opacity-[0.07] rotate-[8deg] animate-float" style={{ animationDelay: "1.5s" }} />
+        <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=300&h=300&fit=crop" alt="" className="absolute bottom-[20%] left-[10%] w-24 h-24 lg:w-40 lg:h-40 object-cover rounded-3xl opacity-[0.08] rotate-[15deg] animate-float" style={{ animationDelay: "3s" }} />
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop" alt="" className="absolute bottom-[8%] right-[15%] w-28 h-28 lg:w-36 lg:h-36 object-cover rounded-2xl opacity-[0.06] rotate-[-8deg] animate-float" style={{ animationDelay: "2s" }} />
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop" alt="" className="absolute top-[45%] left-[35%] w-20 h-20 lg:w-32 lg:h-32 object-cover rounded-xl opacity-[0.05] rotate-[20deg] animate-float" style={{ animationDelay: "4s" }} />
+        <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=300&h=300&fit=crop" alt="" className="absolute top-[60%] right-[5%] w-24 h-24 lg:w-28 lg:h-28 object-cover rounded-2xl opacity-[0.07] rotate-[-18deg] animate-float" style={{ animationDelay: "2.5s" }} />
       </div>
 
       {/* Left Panel - Branding (hidden on mobile/tablet) */}
