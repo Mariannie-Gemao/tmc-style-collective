@@ -82,10 +82,10 @@ const SignUp = () => {
         <p className="relative z-10 text-xs text-white/40 mt-8 lg:mt-auto">© 2026 TMC SHOP · ALL RIGHTS RESERVED</p>
       </div>
 
-      {/* Curved divider */}
-      <div className="hidden lg:block absolute right-[479px] xl:right-[519px] top-0 bottom-0 z-[5] w-16 overflow-hidden">
-        <svg className="h-full w-full" viewBox="0 0 64 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M64 0 C20 25, 20 75, 64 100 L64 0Z" fill="white" fillOpacity="0.04" />
+      {/* Flowing S-curve divider */}
+      <div className="hidden lg:block absolute inset-0 z-[5] pointer-events-none overflow-hidden">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M-50 0 C200 150, 400 350, 350 500 C300 650, 600 750, 1500 900" stroke="white" strokeOpacity="0.08" strokeWidth="1.5" fill="none" />
         </svg>
       </div>
 
