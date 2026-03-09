@@ -81,12 +81,8 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-primary-foreground/10">
-        <div className="container py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-primary-foreground/60">
-          <p>© 2026 TMC Shop. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-accent transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-accent transition-colors">Terms of Service</a>
-          </div>
+        <div className="container py-8 flex items-center justify-center text-sm text-primary-foreground/60">
+          <p>© 2026 TMC SHOP · ALL RIGHTS RESERVED</p>
         </div>
       </div>
     </footer>
