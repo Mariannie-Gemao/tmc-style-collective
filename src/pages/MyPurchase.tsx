@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Package, ArrowLeft } from "lucide-react";
+import { Package, ArrowLeft, ShoppingBag, Sparkles, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PageLoader from "@/components/PageLoader";
 
@@ -31,17 +31,26 @@ const MyPurchase = () => {
   return (
     <PageLoader>
       <div className="min-h-screen bg-background">
-        <div className="container py-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <h1 className="font-heading text-2xl font-bold text-foreground">My Purchase</h1>
+        {/* Floating Header */}
+        <div className="sticky top-0 z-40 backdrop-blur-xl bg-background/80 border-b border-border/40">
+          <div className="container flex items-center justify-between h-16">
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full hover:bg-accent/10 hover:text-accent">
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <div className="flex items-center gap-2.5">
+                <ShoppingBag className="h-5 w-5 text-accent" />
+                <h1 className="font-heading text-lg font-bold text-foreground">My Purchase</h1>
+              </div>
+            </div>
+            <span className="text-xs font-bold text-accent bg-accent/10 px-3 py-1 rounded-full">{filteredOrders.length} {filteredOrders.length === 1 ? 'order' : 'orders'}</span>
           </div>
+        </div>
 
-          {/* Tabs */}
-          <div className="overflow-x-auto -mx-4 px-4 mb-6">
-            <div className="flex gap-1 border-b min-w-max">
+        {/* Tabs */}
+        <div className="sticky top-16 z-30 backdrop-blur-xl bg-background/80 border-b border-border/40">
+          <div className="container overflow-x-auto -mx-0 px-4">
+            <div className="flex gap-1 min-w-max">
               {tabs.map((tab) => (
                 <button
                   key={tab.key}
@@ -57,41 +66,72 @@ const MyPurchase = () => {
               ))}
             </div>
           </div>
+        </div>
 
-          {/* Orders */}
+        <div className="container py-6 lg:py-8">
           {filteredOrders.length === 0 ? (
-            <div className="text-center py-16 text-muted-foreground">
-              <Package className="h-12 w-12 mx-auto mb-4 opacity-40" />
-              <p>No orders found</p>
+            <div className="flex flex-col items-center justify-center min-h-[60vh] animate-fade-in">
+              <div className="relative mb-8">
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center">
+                  <Package className="h-14 w-14 text-accent/40" />
+                </div>
+                <div className="absolute inset-0 rounded-full border-2 border-dashed border-accent/20 animate-[spin_25s_linear_infinite]" />
+              </div>
+              <h2 className="text-2xl font-heading font-bold text-foreground mb-2">No orders found</h2>
+              <p className="text-muted-foreground text-sm mb-10 max-w-xs text-center leading-relaxed">Start shopping to see your orders here.</p>
+              <Button onClick={() => navigate("/")} className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-10 h-12 font-heading font-bold btn-shine relative overflow-hidden shadow-lg">
+                Explore Products
+                <ChevronRight className="h-4 w-4 ml-1" />
+              </Button>
             </div>
           ) : (
-            <div className="space-y-4">
-              {filteredOrders.map((order) => (
-                <div key={order.id} className="bg-card border rounded-xl p-4 flex gap-4 shadow-sm hover:shadow-md transition-shadow">
-                  <img
-                    src={order.image}
-                    alt={order.product}
-                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-cover flex-shrink-0"
-                  />
-                  <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div>
-                      <p className="text-xs text-accent font-medium mb-1">{order.shop}</p>
-                      <h3 className="font-semibold text-foreground">{order.product}</h3>
-                      <p className="text-sm text-muted-foreground">Order {order.id} · {order.date}</p>
+            <div className="space-y-3">
+              {filteredOrders.map((order, index) => (
+                <div
+                  key={order.id}
+                  className="group relative bg-card rounded-2xl border border-border/40 overflow-hidden animate-fade-in transition-all duration-500 hover:border-accent/30 hover:shadow-md"
+                  style={{ animationDelay: `${index * 80}ms` }}
+                >
+                  {/* Hover accent line */}
+                  <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+
+                  <div className="flex items-center gap-3 p-4 sm:p-5">
+                    {/* Image */}
+                    <div className="relative flex-shrink-0 w-[80px] h-[80px] sm:w-[96px] sm:h-[96px] rounded-xl overflow-hidden bg-muted">
+                      <img
+                        src={order.image}
+                        alt={order.product}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                      />
                     </div>
-                    <div className="text-right">
-                      <p className="font-bold text-lg text-foreground">₱{order.price.toLocaleString()}</p>
-                      <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full capitalize ${
-                        order.status === "completed"
-                          ? "bg-green-100 text-green-700"
-                          : order.status === "to-pay"
-                          ? "bg-yellow-100 text-yellow-700"
-                          : order.status === "to-ship"
-                          ? "bg-blue-100 text-blue-700"
-                          : "bg-purple-100 text-purple-700"
-                      }`}>
-                        {order.status.replace("-", " ")}
-                      </span>
+
+                    {/* Info */}
+                    <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
+                      <div>
+                        <div className="flex items-start justify-between gap-2">
+                          <h3 className="font-heading font-bold text-foreground text-[15px] sm:text-base leading-snug group-hover:text-accent transition-colors duration-300 truncate">
+                            {order.product}
+                          </h3>
+                          <span className={`flex-shrink-0 inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full capitalize ${
+                            order.status === "completed"
+                              ? "bg-green-500/10 text-green-600"
+                              : order.status === "to-pay"
+                              ? "bg-yellow-500/10 text-yellow-600"
+                              : order.status === "to-ship"
+                              ? "bg-blue-500/10 text-blue-600"
+                              : order.status === "cancel"
+                              ? "bg-destructive/10 text-destructive"
+                              : "bg-purple-500/10 text-purple-600"
+                          }`}>
+                            {order.status.replace("-", " ")}
+                          </span>
+                        </div>
+                        <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-accent/80 mt-0.5">{order.shop}</span>
+                      </div>
+                      <div className="flex items-end justify-between mt-2">
+                        <span className="text-xs text-muted-foreground">Order {order.id} · {order.date}</span>
+                        <span className="font-heading font-bold text-lg text-accent">₱{order.price.toLocaleString()}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
